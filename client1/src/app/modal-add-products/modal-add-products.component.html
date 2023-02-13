@@ -1,0 +1,24 @@
+<mat-card-content>
+  <mat-card-title>
+    <h1 class="card">Cadastrar Produto</h1>
+  </mat-card-title>
+  <br>
+    <app-dropdown [array]="group" [idField]="'id'" [textField]="'description'" [title]="'Grupo'" [(ngModel)]="selectedGroup"></app-dropdown> 
+  <br>
+  <app-dropdown [array]="subgroup" [idField]="'id'" [textField]="'description'" [title]="'Sub-grupo'" [(ngModel)]="selectedSubgroup"></app-dropdown> 
+  <br>
+  <app-dropdown [array]="collection" [idField]="'id'" [textField]="'description'" [title]="'Coleção'" [(ngModel)]="selectedCollection"></app-dropdown> 
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Descrição</mat-label>
+    <input matInput type="text"  [(ngModel)]="description" maxlength="100" minlength="1">
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Preço</mat-label>
+    <input matInput type="number" [(ngModel)]="salePrice" maxlength="9" minlength="4">
+  </mat-form-field>
+  <mat-card-actions>
+    <button  mat-raised-button color="primary" (click)="addProducts()" >Cadastrar</button>
+    <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+  </mat-card-actions>
+</mat-card-content>

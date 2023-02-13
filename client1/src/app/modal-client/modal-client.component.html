@@ -1,0 +1,124 @@
+<mat-tab-group>
+  <mat-tab label="Dados">
+      <mat-card-content>
+        <br>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Razão Social</th>
+            <th>Cliente desde</th>
+            <th>Criado em </th>
+            <th>Atualizado em </th>
+          </tr>
+          <tr  *ngFor="let clients of client">
+            <td>{{clients.id}}</td>
+            <td>{{clients.name}}</td>
+            <td>{{clients.cnpj}}</td>
+            <td>{{clients.razaoSocial}}</td>
+            <td>{{clients.dateClient}}</td>
+            <td>{{clients.createdAt}}</td>
+            <td>{{clients.updatedAt}}</td>
+            <td>{{clients.address}}</td>
+           <!--<p><b>{{group.id}} - {{group.description}}</b></p>-->
+          </tr>
+        </table>
+        <br>
+        <h2>Endereços: </h2>
+        <table>
+          <tr>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado </th>
+            <th>Número</th>
+            <th>Ponto de Referência</th>
+            <th>Complemento</th>
+          </tr>
+          <tr  *ngFor="let endereco of endereco">
+            <td>{{endereco.cep}}</td>
+            <td>{{endereco.rua}}</td>
+            <td>{{endereco.bairro}}</td>
+            <td>{{endereco.cidade}}</td>
+            <td>{{endereco.estado}}</td>
+            <td>{{endereco.numero}}</td>
+            <td>{{endereco.pontoDeReferencia}}</td>
+            <td>{{endereco.complemento}}</td>
+          </tr>
+        </table>
+        <mat-card-actions>
+          <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+        </mat-card-actions>
+      </mat-card-content>
+  </mat-tab>
+<mat-tab label="Editar">
+  <mat-card-content>
+  <h2>Editar dados do cliente</h2>
+  <mat-form-field class="example-45-width" appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input matInput  [(ngModel)]="name" maxlength="150" minlength="100">
+  </mat-form-field>
+  <mat-form-field class="example-45-width" appearance="fill">
+    <mat-label>Razão Social</mat-label>
+    <input matInput  [(ngModel)]="razaoSocial" maxlength="150" minlength="1">
+  </mat-form-field>
+  <mat-card-actions>
+    <button  mat-raised-button color="primary" (click)="put()" >Editar</button>
+  </mat-card-actions>
+  <hr>
+    <br>
+    <table>
+      <tr>
+        <th>CEP</th>
+        <th>Rua</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado </th>
+        <th>Número</th>
+        <th>Editar</th>
+        <th>Deletar</th>
+      </tr>
+      <tr  *ngFor="let endereco of endereco">
+        <td>{{endereco.cep}}</td>
+        <td>{{endereco.rua}}</td>
+        <td>{{endereco.bairro}}</td>
+        <td>{{endereco.cidade}}</td>
+        <td>{{endereco.estado}}</td>
+        <td>{{endereco.numero}}</td>
+        <td  (click)="openDialog(endereco.id)">
+          <mat-icon>edit</mat-icon>
+        </td>
+        <td (click)="openDeleteAddress(endereco.id)">
+          <mat-icon >delete</mat-icon>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <mat-card-actions>
+      <button  mat-raised-button color="primary" (click)="openAddAddress()" ><mat-icon>add</mat-icon></button>
+    </mat-card-actions>
+    <hr>
+    <mat-card-actions>
+      <button  mat-raised-button color="primary" (click)="onNoClick()" >Fechar</button>
+    </mat-card-actions>
+
+
+
+
+</mat-card-content>
+</mat-tab>
+      <mat-tab label="Deletar" >
+          <mat-card-content>
+            <br>
+            <h1>Tem certeza que deseja excluir esse cliente? </h1>
+            <br>
+            <br>
+            <mat-card-actions>
+              <button  mat-raised-button color="primary" (click)="deleteClient()" >Excluir</button>
+              <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-tab>
+</mat-tab-group>

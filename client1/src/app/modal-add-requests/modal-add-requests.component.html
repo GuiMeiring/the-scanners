@@ -1,0 +1,140 @@
+<mat-tab-group>
+  <mat-tab label="Dados">
+<mat-card-content>
+  <div class="example-full-width" appearance="fill" *ngFor="let request of requests; let islast = last; let i = index">
+    <ng-template [ngIf]="islast">
+        <h2>Número do pedido: {{i+2}}</h2>
+    </ng-template>
+  </div>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Cliente</mat-label>
+    <input matInput placeholder="Digite o nome do cliente e clique no correspondente"  type="text" [(ngModel)]="nameClient" maxlength="100" minlength="2">
+  </mat-form-field>
+   <!-------------------------------------------------------------------------------------------------->
+<br>
+<table *ngIf="nameClient.length >=1">
+  <tr>
+    <th>Nome</th>
+    <th>CNPJ</th>
+  </tr>
+  <tr  *ngFor="let clients of client | filter : nameClient">
+      <td (click)="addNameClient(clients.name,clients.id)">{{clients.name}}</td>
+      <td (click)="addNameClient(clients.name, clients.id)">{{clients.cnpj}}</td>
+      <!--<p><b>{{group.id}} - {{group.description}}</b></p>-->
+  </tr>
+ </table>
+   <!-------------------------------------------------------------------------------------------------->
+<br>
+<div *ngIf="fkClients!=0">
+  <app-dropdown [array]="address" [idField]="'id'" [textField]="'rua'" [title]="'Endereços'" [(ngModel)]="selectedAddress"></app-dropdown>
+</div>
+
+<mat-form-field class="example-40-width" appearance="fill">
+  <mat-label>Data de Emissão</mat-label>
+  <input matInput [matDatepicker]="picker"  [(ngModel)]="startDate"  [min]="startDate"  [max]="startDate" required>
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+</mat-form-field>
+  <mat-form-field class="example-40-width" appearance="fill">
+          <mat-label>Data de Entrega</mat-label>
+          <input matInput [matDatepicker]="picker2"[(ngModel)]="DateDelivery"  [min]="startDate"  required>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 startView="year" [startAt]="DateDelivery"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="example-40-width " appearance="fill">
+          <mat-label>Total</mat-label>
+          <input matInput type="number" [(ngModel)]="total" readonly="true">
+      </mat-form-field>
+</mat-card-content>
+</mat-tab>
+
+
+
+
+<mat-tab label="Adicionar Produto">
+
+  <mat-card-content>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Produto</mat-label>
+      <input matInput placeholder="Digite o produto"  type="text" [(ngModel)]="description" maxlength="100" minlength="2">
+    </mat-form-field>
+     <!-------------------------------------------------------------------------------------------------->
+  <br>
+  <table *ngIf="description.length >=1">
+    <tr>
+      <th>Descrição</th>
+    </tr>
+    <tr  *ngFor="let product of products | filter : description">
+        <td (click)="addProduct(product.description, product.id, product.salePrice)">{{product.description}}</td>
+    </tr>
+  </table>
+  <div *ngFor="let product of product">
+    <div *ngIf="denovo ==1">
+    <mat-form-field class="example-30-width ">
+        <mat-label>Quantidade</mat-label>
+        <input matInput type="number"[(ngModel)]="amount" (blur)="calculaTotal()" min="1" max="100" required>
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+      <mat-label>Preço unitário</mat-label>
+        <input matInput  [(ngModel)]="unitPrice" readonly="true">
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+        <mat-label>Desconto</mat-label>
+        <input matInput [(ngModel)]="discount" type="number" (blur)="calculaTotal()" min="0" max="100" required>
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+        <mat-label>Acrescimo</mat-label>
+        <input matInput [(ngModel)]="increase" type="number" (blur)="calculaTotal()" min="0" max="100" required>
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+        <mat-label>Total</mat-label>
+        <input matInput [(ngModel)]="totalProduct2" minlength="4" maxlength="1000000000000" required  readonly="true">
+    </mat-form-field>
+  </div>
+</div>
+</mat-card-content>
+<mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addEndereco()">Adicionar produtos</button>
+  <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+</mat-card-actions>
+
+</mat-tab>
+<mat-tab label="Tabela dos Produtos Adicionados">
+  <table>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor unitário</th>
+      <th>Desconto</th>
+      <th>Acrescemo</th>
+      <th>Total</th>
+    </tr>
+    <tr  *ngFor="let products of listaProduct">
+        <td>{{products.fkProducts}}</td>
+        <td>{{products.amount}}</td>
+        <td>{{products.unitPrice}}</td>
+        <td>{{products.discount}}</td>
+        <td>{{products.increase}}</td>
+        <td>{{products.total}}</td>
+    </tr>
+  </table>
+
+
+</mat-tab>
+<mat-tab label="Confirmação">
+  <mat-card-content>
+    <h1>Deseja confirmar o pedido?</h1>
+  </mat-card-content>
+  <mat-card-actions>
+
+  <button mat-raised-button color="primary" (click)="addRequests()">Confirmar</button>
+
+  <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+
+  </mat-card-actions>
+</mat-tab>
+</mat-tab-group>
+
+

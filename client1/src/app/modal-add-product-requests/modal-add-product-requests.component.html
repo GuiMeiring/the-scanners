@@ -1,0 +1,42 @@
+<mat-card-content>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Produto</mat-label>
+      <input matInput placeholder="Digite o produto"  type="text" [(ngModel)]="description" maxlength="100" minlength="2">
+    </mat-form-field>
+     <!-------------------------------------------------------------------------------------------------->
+  <br>
+  <table *ngIf="description.length >=1">
+    <tr>
+      <th>Descrição</th>
+    </tr>
+    <tr  *ngFor="let product of products | filter : description">
+        <td (click)="addProduct(product.description, product.id, product.salePrice)">{{product.description}}</td>
+    </tr>
+  </table>
+  <div *ngFor="let product of product">
+    <mat-form-field class="example-30-width ">
+        <mat-label>Quantidade</mat-label>
+        <input matInput type="number"[(ngModel)]="amount" (blur)="calculaTotal()" min="1" max="100" required>
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+      <mat-label>Preço unitário</mat-label>
+        <input matInput  [(ngModel)]="unitPrice" readonly="true">
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+        <mat-label>Desconto</mat-label>
+        <input matInput [(ngModel)]="discount" (blur)="calculaTotal()" minlength="1" maxlength="4" required>
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+        <mat-label>Acrescimo</mat-label>
+        <input matInput [(ngModel)]="increase" (blur)="calculaTotal()" minlength="1" maxlength="4" required>
+    </mat-form-field>
+    <mat-form-field class="example-30-width ">
+        <mat-label>Total</mat-label>
+        <input matInput [(ngModel)]="totalProduct" minlength="4" maxlength="1000000000000" required readonly="true">
+    </mat-form-field>
+  </div>
+</mat-card-content>
+    <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addListaProduct()">Adicionar produto</button>
+    <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+</mat-card-actions>

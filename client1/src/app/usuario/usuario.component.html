@@ -1,0 +1,49 @@
+<mat-card class="card">
+    <mat-card-content>
+        <div *ngFor="let user of users; let islast = last; let i = index">
+            <ng-template [ngIf]="islast">
+                <h1>Cadastrar Usuário</h1>
+                <h1>Usuários cadastrados : {{i+1}}</h1>
+            </ng-template>
+        </div>
+        <br>
+        <mat-form-field class="example-full-width"  appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="digite seu nome:" [(ngModel)]="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width"  appearance="fill">
+            <mat-label>Nome de usuário</mat-label>
+            <input matInput placeholder="Ex:  GuiMeiring" [(ngModel)]="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width"  appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="crie uma senha:"  [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width"  appearance="fill">
+            <mat-label>Confirmação</mat-label>
+            <input matInput placeholder="digite sua senha:"  [type]="hide ? 'cpassword' : 'text'" [(ngModel)]="cpassword">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            
+            
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click) = "postUser()">Confirmar</button>
+        <div *ngFor="let user of users; let islast = last">
+            <ng-template [ngIf]="islast">
+                <button mat-button color="primary" (click) = "modalEdit()">Trocar a senha</button>
+                <button mat-button color="primary" (click) = "modalDelete()">Deletar usuario</button>
+            </ng-template>
+        </div>
+        
+    </mat-card-actions>
+</mat-card>
+

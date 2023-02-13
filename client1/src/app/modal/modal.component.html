@@ -1,0 +1,52 @@
+<mat-tab-group>
+
+     <mat-tab label="Dados">
+        <mat-card-content>
+        <br>
+        <table>
+        <tr>
+          <th>ID</th>
+          <th>Descrição</th>
+          <th>Criado em </th>
+          <th>Atualizado em </th>
+        </tr>
+        <tr  *ngFor="let group of group">
+          <td >{{group.id}}</td>
+          <td>{{group.description}}</td>
+          <td>{{group.createdAt}}</td>
+          <td>{{group.updatedAt}}</td>
+            <!--<p><b>{{group.id}} - {{group.description}}</b></p>-->
+        </tr>
+      </table>
+      <mat-card-actions>
+        <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+      </mat-card-actions>
+
+
+        </mat-card-content>
+    </mat-tab>-->
+    <mat-tab label="Editar">
+    <mat-card-content>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Descrição</mat-label>
+        <input matInput [(ngModel)]="description"  maxlength="100" minlength="1">
+      </mat-form-field>
+      <br>
+      <mat-card-actions>
+        <button  mat-raised-button color="primary"  (click)="groupEdit()">Editar</button>
+        <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+      </mat-card-actions>
+    </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Deletar" >
+      <mat-card-content>
+        <br>
+           <h1>Tem certeza que deseja excluir esse grupo? </h1>
+        <br>
+        <mat-card-actions>
+          <button  mat-raised-button color="primary"  (click)="groupDelete()">Excluir</button>
+          <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>

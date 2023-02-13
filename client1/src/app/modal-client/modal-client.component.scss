@@ -1,0 +1,50 @@
+mat-card-content{
+  text-align: center;
+}
+.example-form {
+  min-width: 90px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.example-25-width {
+  width: 25%;
+}
+.example-20-width{
+  width: 20%;
+  margin-left: 8px;
+}
+.example-45-width{
+  width: 45%;
+  margin-left: 8px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+padding: 8px;
+text-align: center;
+color:rgba(47,117,229,255);
+border-bottom: 3px solid rgba(47,117,229,255)
+
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+
+}
+th:hover{
+  color:rgba(144,108,255,255);
+border-bottom: 3px solid rgba(144,108,255,255);
+
+}
+td:hover{
+color:rgba(89,177,126,255);
+border-bottom: 3px solid rgba(89,177,126,255);
+}

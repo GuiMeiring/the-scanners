@@ -1,0 +1,27 @@
+<mat-card>
+
+  <mat-card-content >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <input matInput placeholder="Inserir sub-grupo" [(ngModel)]="search">
+      <button mat-icon-button matSuffix (click)="PostSubgroupModal()"  [attr.aria-label]="'Addgroup'" [attr.aria-pressed]="edit">
+        <mat-icon>add</mat-icon>
+    </button>
+  </mat-form-field>
+  <!-------------------------------------------------------------------------------------------------->
+  <br>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Descrição</th>
+      <th>Grupo</th>
+    </tr>
+    <tr  *ngFor="let subgroup of subGroup  | filter : search">
+        <td (click)=" EditSubgroupModal(subgroup,subgroup.id,subgroup.fkGroup)">{{subgroup.id}}</td>
+        <td (click)=" EditSubgroupModal(subgroup,subgroup.id,subgroup.fkGroup)">{{subgroup.description}}</td>
+        <td (click)=" EditSubgroupModal(subgroup,subgroup.id,subgroup.fkGroup)">{{subgroup.group_description}}</td>
+        
+       
+    </tr>
+   </table>
+  </mat-card-content>
+</mat-card>

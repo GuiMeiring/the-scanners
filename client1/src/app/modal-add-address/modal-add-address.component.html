@@ -1,0 +1,41 @@
+<mat-card-content>
+    <h1>Adicionar endereço</h1>
+    <br>
+    <mat-form-field class="example-30-width" appearance="fill" >
+      <mat-label>CEP</mat-label>
+      <input matInput  [(ngModel)]="cep" maxlength="9" minlength="9" (blur)="consultaCep()">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Rua</mat-label>
+      <input matInput  [(ngModel)]="rua" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Bairro</mat-label>
+      <input matInput  [(ngModel)]="bairro" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Cidade</mat-label>
+      <input matInput [(ngModel)]="cidade" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Estado</mat-label>
+      <input matInput [(ngModel)]="estado" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Número da casa</mat-label>
+      <input matInput  type="number" [(ngModel)]="numero">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Ponto de Referência</mat-label>
+      <input matInput  [(ngModel)]="pontoDeReferencia" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Complemento</mat-label>
+      <input matInput  [(ngModel)]="complemento" maxlength="100" minlength="1">
+    </mat-form-field>
+  </mat-card-content>
+  
+    <mat-card-actions>
+      <button  mat-raised-button color="primary" (click)="add()" >Adicionar</button>
+      <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+    </mat-card-actions>

@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-content>
+       <mat-form-field class="example-full-width" appearance="fill">
+         <input matInput placeholder="Inserir Pedido" [(ngModel)]="search">
+         <button mat-icon-button matSuffix (click)="postRequests()" [attr.aria-label]="'Addrequests'" [attr.aria-pressed]="add">
+           <mat-icon>add</mat-icon>
+       </button>
+  </mat-form-field>
+  <!-------------------------------------------------------------------------------------------------->
+  <br>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Data de emissão</th>
+      <th>Data de entrega</th>
+      <th>total</th>
+      <th >Endereço</th>
+    </tr>
+    <tr  *ngFor="let requests of requests  | filter : search">
+        <td (click)="modalEditRequests(requests.id, requests, requests.fkClients, requests.DateEmission, requests.DateDelivery, requests.fkAddress, requests.total)">{{requests.id}}</td>
+        <td (click)="modalEditRequests(requests.id, requests, requests.fkClients, requests.DateEmission, requests.DateDelivery, requests.fkAddress, requests.total)">{{requests.client_name}}</td>
+        <td (click)="modalEditRequests(requests.id, requests, requests.fkClients, requests.DateEmission, requests.DateDelivery, requests.fkAddress, requests.total)">{{requests.DateEmission | date : 'MM/dd/yyyy'}}</td>
+        <td (click)="modalEditRequests(requests.id, requests, requests.fkClients, requests.DateEmission, requests.DateDelivery, requests.fkAddress, requests.total)">{{requests.DateDelivery | date : 'MM/dd/yyyy'}}</td>
+        <td (click)="modalEditRequests(requests.id, requests, requests.fkClients, requests.DateEmission, requests.DateDelivery, requests.fkAddress, requests.total)">{{requests.total}}</td>
+        <td (click)="modalEditRequests(requests.id, requests, requests.fkClients, requests.DateEmission, requests.DateDelivery, requests.fkAddress, requests.total)">{{requests.address_rua}}</td>
+
+        <!--<p><b>{{group.id}} - {{group.description}}</b></p>-->
+    </tr>
+
+   </table>
+  </mat-card-content>
+</mat-card>

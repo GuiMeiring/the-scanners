@@ -1,0 +1,22 @@
+
+    <mat-card-content>
+        <h1>num</h1>
+    </mat-card-content>
+    <mat-card-content>
+        <table>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CNPJ</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let clients of client | filter : search">
+      
+      
+                <td>{{clients.id}}</td>
+                <td>{{clients.name}}</td>
+                <td>{{clients.cnpj}}</td>
+                <!--<p><b>{{group.id}} - {{group.description}}</b></p>-->
+            </tr>
+           </table>
+    </mat-card-content>>

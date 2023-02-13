@@ -1,0 +1,8 @@
+<h4>{{title}}</h4>
+<mat-form-field>
+    <mat-select [(ngModel)]="value">
+        <mat-option *ngFor="let item of array" [value]="item[idField]" (onSelectionChange)="selectChange(item)">
+            {{item[textField]}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

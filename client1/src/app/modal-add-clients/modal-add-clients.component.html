@@ -1,0 +1,107 @@
+
+<mat-tab-group>
+  <mat-card-content>
+  <mat-tab label="Cadastro">
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput  [(ngModel)]="name" maxlength="150" minlength="100">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>CNPJ</mat-label>
+      <input matInput  type="text" [(ngModel)]="cnpj" maxlength="14" minlength="14">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Razão Social</mat-label>
+      <input matInput  [(ngModel)]="razaoSocial" maxlength="150" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-30-width" appearance="fill">
+      <mat-label>Cliente desde de </mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+    </mat-form-field>
+    <hr>
+    <h2>Endereço *opicional</h2>
+
+    <mat-form-field class="example-20-width" appearance="fill" >
+      <mat-label>CEP</mat-label>
+      <input matInput  [(ngModel)]="cep" maxlength="9" minlength="9" (blur)="consultaCep()">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Rua</mat-label>
+      <input matInput  [(ngModel)]="rua" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Bairro</mat-label>
+      <input matInput  [(ngModel)]="bairro" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Cidade</mat-label>
+      <input matInput [(ngModel)]="cidade" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Estado</mat-label>
+      <input matInput [(ngModel)]="estado" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Número da casa</mat-label>
+      <input matInput  type="number" [(ngModel)]="numero">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Ponto de Referência</mat-label>
+      <input matInput  [(ngModel)]="pontoDeReferencia" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-form-field class="example-20-width" appearance="fill">
+      <mat-label>Complemento</mat-label>
+      <input matInput  [(ngModel)]="complemento" maxlength="100" minlength="1">
+    </mat-form-field>
+    <mat-card-actions>
+      <button  mat-raised-button color="primary" (click)="addEndereco()" >Adicionar a tabela de endereços</button>
+      <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+    </mat-card-actions>
+
+  </mat-tab>
+  <mat-tab label="Tabela de endereços">
+    <br>
+    <mat-card-actions>
+      <br>
+        <table>
+          <tr>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Número</th>
+            <th>Complemento</th>
+            <th>Ponto de referência</th>
+          </tr>
+          <tr  *ngFor="let enderecos of enderecos">
+            <td>{{enderecos.cep}}</td>
+            <td>{{enderecos.rua}}</td>
+            <td>{{enderecos.bairro}}</td>
+            <td>{{enderecos.cidade}}</td>
+            <td>{{enderecos.estado}}</td>
+            <td>{{enderecos.numero}}</td>
+            <td>{{enderecos.complemento}}</td>
+            <td>{{enderecos.pontoDeReferencia}}</td>
+          </tr>
+        </table>
+        <br>
+        <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+    </mat-card-actions>
+  </mat-tab>
+  <mat-tab label="Confirmar">
+    <br>
+    <mat-card-content>
+      <h1>Deseja cadastrar esse cliente? </h1>
+    </mat-card-content>
+    <mat-card-actions>
+      <button  mat-raised-button color="primary" (click)="clientAdd()" >Cadastrar</button>
+      <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+    </mat-card-actions>
+  </mat-tab>
+</mat-card-content>
+</mat-tab-group>
+

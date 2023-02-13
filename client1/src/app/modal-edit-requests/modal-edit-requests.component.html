@@ -1,0 +1,117 @@
+<mat-tab-group>
+    <mat-tab label="Dados">
+        <mat-card-content>
+            <br>
+            <h2>Dados do pedido</h2>
+            <br>
+            <table>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Rua</th>
+                  <th>data de emissão</th>
+                  <th>Data de entrega</th>
+                  <th>Total</th>
+                </tr>
+                <tr  *ngFor="let request of requests">
+                    <td>{{request.client_name }}</td>
+                    <td>{{request.address_rua }}</td>
+                    <td>{{request.DateEmission  | date : 'MM/dd/yyyy'}}</td>
+                    <td>{{request.DateDelivery  | date : 'MM/dd/yyyy'}}</td>
+                    <td>{{request.total}}</td>
+                </tr>
+              </table>
+            <h2>Lista de pedidos</h2>
+            <br>
+            <table>
+                <tr>
+                  <th>Produto</th>
+                  <th>Quantidade</th>
+                  <th>Valor unitário</th>
+                  <th>Desconto</th>
+                  <th>Acrescemo</th>
+                  <th>Total</th>
+                </tr>
+                <tr  *ngFor="let product of products">
+                    <td>{{product.product_description}}</td>
+                    <td>{{product.amount}}</td>
+                    <td>{{product.unitPrice}}</td>
+                    <td>{{product.discount}}</td>
+                    <td>{{product.increase}}</td>
+                    <td>{{product.total}}</td>
+                </tr>
+              </table>
+        </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Editar">
+        <mat-card-content>
+        <br>
+    
+        <br>
+        <mat-form-field class="example-35-width" appearance="fill">
+            <mat-label>Data de Emissão</mat-label>
+            <input matInput [matDatepicker]="picker"  [(ngModel)]="startDate"  [min]="startDate"  [max]="startDate" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+            <mat-form-field class="example-35-width" appearance="fill">
+                    <mat-label>Data de Entrega</mat-label>
+                    <input matInput [matDatepicker]="picker2"[(ngModel)]="DateDelivery"  [min]="startDate"  required>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" [startAt]="DateDelivery"></mat-datepicker>
+                  </mat-form-field>
+                  <br>
+                  <app-dropdown [array]="address" [idField]="'id'" [textField]="'rua'" [title]="'Endereços'" [(ngModel)]="selectedAddress"></app-dropdown> 
+        </mat-card-content>
+        <mat-card-actions>
+            <button  mat-raised-button color="primary" (click)="editRequests()">Editar</button>
+        </mat-card-actions>
+        <hr>
+        <mat-card-content>
+          <br>
+          <table>
+              <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor unitário</th>
+                <th>Desconto</th>
+                <th>Acrescemo</th>
+                <th>Total</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+              </tr>
+              <tr  *ngFor="let product of products">
+                  <td>{{product.product_description}}</td>
+                  <td>{{product.amount}}</td>
+                  <td>{{product.unitPrice}}</td>
+                  <td>{{product.discount}}</td>
+                  <td>{{product.increase}}</td>
+                  <td>{{product.total}}</td>
+                  <td  (click)="openEditProduct(product.id, product.unitPrice, product.fkProducts, product.total, product.fkRequests)">
+                    <mat-icon>edit</mat-icon>
+                  </td>
+                  <td (click)="openDeleteProduct(product.id, product.unitPrice, product.fkProducts, product.total, product.fkRequests)"> 
+                    <mat-icon >delete</mat-icon>
+                  </td>
+              </tr>
+            </table>
+            <mat-card-actions>
+              <mat-card-actions>
+                <button  mat-raised-button color="primary" (click)="openAddProduct()"><mat-icon>add</mat-icon></button>
+            </mat-card-actions>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Deletar" >
+      <mat-card-content>
+        <br>
+           <h1>Tem certeza que deseja excluir esse grupo? </h1>
+        <br>
+        <mat-card-actions>
+          <button  mat-raised-button color="primary"  (click)="requestsDelete()">Excluir</button>
+          <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-tab>
+</mat-tab-group>
