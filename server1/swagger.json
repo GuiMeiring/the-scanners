@@ -1,0 +1,21 @@
+
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title":"API de manpulação do Motor de Vendas",
+        "description":"Essa API tem como objetivo a manipulação do Motor de Vendas",
+        "termsOfService":"https://localhost:3007/terms",
+        "contact":{
+            "email":"guilherme_meiring@estudante.sesisenai.org.br",
+            "email":"heloisa_ernst@estudante.sesisenai.org.br"
+        },
+        "version":"1.0.0"
+    },
+    "servers":[
+        {
+            "url":"https://localhost:3007",
+            "description":"API de teste"
+        }
+    ]
+    
+}
