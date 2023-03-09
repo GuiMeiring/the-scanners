@@ -10,6 +10,7 @@ knl.post('user', async(req, resp) => {
         password : Joi.string().min(6).max(16).required(),
         cpassword : Joi.string().min(6).max(16).required()
     })
+    console.log(req.body);
 
     knl.validate(req.body, schema);
 
@@ -51,18 +52,18 @@ knl.patch('user/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"ok"});
     resp.end();
 })
-knl.patch('user', async(req,resp)=>{
+knl.patch('user/patch/:id', async(req,resp)=>{
     const result = await knl.sequelize().models.Usuario.update({
         status:0,
     },
     {
     where:{
-        id:req.body.id
+        id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"ok"});
     resp.end();
 })

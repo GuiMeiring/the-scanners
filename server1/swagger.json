@@ -4,18 +4,249 @@
     "info":{
         "title":"API de manpulação do Motor de Vendas",
         "description":"Essa API tem como objetivo a manipulação do Motor de Vendas",
-        "termsOfService":"https://localhost:3007/terms",
-        "contact":{
-            "email":"guilherme_meiring@estudante.sesisenai.org.br",
-            "email":"heloisa_ernst@estudante.sesisenai.org.br"
-        },
         "version":"1.0.0"
     },
     "servers":[
         {
-            "url":"https://localhost:3007",
+            "url":"http://localhost:3007",
             "description":"API de teste"
         }
-    ]
+    ],
+    "paths":{
+        "/user":{
+            "post":{
+                "summary":"Cadastro  de usuário",
+                "description":"Essa rota é responsável pelo cadastro de um novo usuário",
+                "tags":["Usuário"],
+                "operationId": "user",
+                "security":[{"bearerAuth":[]}],
+                            "parameters":[
+                                {
+                                    "in":"body",
+                                    "name":"body",
+                                    "description":"Usuario para cadastrar",
+                                    "required":true,
+                                    "schema":{
+                                        "type": "object",
+                                        "$ref":"#/components/schemas/User"
+                                     },
+                                     "examples":{
+                                        "user":{
+                                            "value":{
+                                                "name":"Guilherme",
+                                                "username":"GuiMeiring",
+                                                "password":"gui123",
+                                                "cpassword":"gui123"
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            
+                        
+                            ],
+                        
+                    
+                        
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            },
+            "get":{
+                "description": "Busca de todos usuários já cadastrados",
+                "summary": "Essa rota é responsável por listar todos usuários em um array",
+                "tags": ["Usuário"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "Successful login",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+    
+    
+            }
+        },
+        "/user/{id}":{
+            "patch":{
+                "description":"Edita a senha do usuário pela seu id",
+                "summary":"Essa rota é responsável por editar a senhade um único usuário pela seu id",
+                "tags":["Usuário"],
+                "security":[{"bearerAuth":[]}],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "description":"usuário pela id",
+                    "required":true
+                }],
+                "requestBody":{
+                    "content":{
+                        "aplication/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                
+                                    "cpassword":{
+                                        "type": "string",
+                                        "example":"gui123",
+                                        "description": "Senha do usuário"
+                                    },
+                                    "password":{
+                                        "type": "string",
+                                        "example":"gui123",
+                                        "description": "Senha do usuário"
+                                    }
+    
+                                },
+                                "required":[
+                                    "password",
+                                    "cpassword"
+                                ]
+    
+                            }
+                            
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+                
+                
+                            
+                
+                
+            }
+        },
+        "/user/patch/{id}":{
+            "patch":{
+                "description": "Edita o 'status' do usuário para '0' pelo id",
+                "summary": "Essa rota é responsável por inatival o usuário pelo id",
+                "tags": ["Usuário"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "usuário pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+
+            }
+        }
+    },
+        
+        "components":{
+            "schemas":{
+                "User":{
+                    "required":[
+                        "name",
+                        "username",
+                        "password",
+                        "cpassword"
+                    ],
+                    "properties":{
+                        "name":{
+                            "type":"string",
+                            "description":"nome completo do usuário"
+                        },
+                        "username":{
+                            "type":"string",
+                            "description":"nome do usuário para o login"
+                        },
+                        "password":{
+                            "type":"string",
+                            "format":"password",
+                            "description":"senha do usuário"
+                        },
+                        "cpassword":{
+                            "type":"string",
+                            "format":"password",
+                            "description":"comfirmação da senha"
+                        }
+                    }
+                }
+            },
+            "securitySchemes":{
+                "bearerAuth":{
+                    "type":"http",
+                    "scheme":"bearer",
+                    "bearerFormat":"JWT"
+                }
+            }
+        }
+        
+        
+
+    
     
 }
