@@ -31,6 +31,7 @@ knl.post('user', async(req, resp) => {
     });
 
     await user.save();
+    await resp.json({"status":"ok"});
     resp.end();
 },  securityConsts.USER_TYPE_PUBLIC);
 knl.get('user', async (req, resp)=>{

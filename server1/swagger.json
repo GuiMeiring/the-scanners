@@ -18,18 +18,15 @@
                 "summary":"Cadastro  de usuário",
                 "description":"Essa rota é responsável pelo cadastro de um novo usuário",
                 "tags":["Usuário"],
-                "operationId": "user",
                 "security":[{"bearerAuth":[]}],
-                            "parameters":[
-                                {
-                                    "in":"body",
-                                    "name":"body",
-                                    "description":"Usuario para cadastrar",
-                                    "required":true,
-                                    "schema":{
-                                        "type": "object",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
                                         "$ref":"#/components/schemas/User"
-                                     },
+                                        
+                            },
                                      "examples":{
                                         "user":{
                                             "value":{
@@ -40,11 +37,14 @@
                                                 
                                             }
                                         }
-                                    }
-                                }
+                                        }
+                                    
+                                
                             
                         
-                            ],
+                        }
+                    }
+                },
                         
                     
                         
@@ -77,7 +77,7 @@
                 "parameters": [],
                 "responses": {
                     "200":{
-                        "description": "Successful login",
+                        "description": "OK",
                         "content": {
                             "application/json":{
                                 "schema":{
@@ -106,6 +106,52 @@
     
             }
         },
+        "/logon": {
+            "post": {
+                "description": "Logon de usuário",
+                "summary": "Essa rota é responsável por realizar o logon de usuário e gerar o token",
+                "tags": [ "Usuário"],
+
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                
+                                    "username":{
+                                        "type": "string",
+                                        "example":"GuiMeiring",
+                                        "description": "username a do usuário"
+                                    },
+                                    "password":{
+                                        "type": "string",
+                                        "example":"gui123",
+                                        "description": "Senha do usuário"
+                                    }
+
+                                },
+                                "required": [
+                                    "username","password"
+                                ]
+
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description":"usuario não existe"
+                    },
+                    "200":{
+                        "description": "Successful login"
+                    }
+                    
+
+                    }
+            
+                }
+            },
         "/user/{id}":{
             "patch":{
                 "description":"Edita a senha do usuário pela seu id",
@@ -120,7 +166,7 @@
                 }],
                 "requestBody":{
                     "content":{
-                        "aplication/json":{
+                        "application/json":{
                             "schema":{
                                 "type": "object",
                                 "properties": {
