@@ -383,6 +383,80 @@
                 }
 
             }
+        },
+        "/group/{id}":{
+            "patch":{
+                "description": "Edita o 'status' do grupo para '0' pelo id",
+                "summary": "Essa rota é responsável por inatival o produto pelo id",
+                "tags": ["Grupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "grupo pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+
+            },
+            "get":{
+                "description": "Buscar um único grupo pelo id",
+                "summary": "Essa rota é responsável por buscar um único grupo pelo id",
+                "tags": ["Grupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "grupo pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Group"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+
+            }
         }
     },
         
