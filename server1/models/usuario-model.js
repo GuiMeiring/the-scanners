@@ -23,6 +23,8 @@ module.exports = (sequelize) => {
         status : {
             type : Sequelize.INTEGER,
             allowNull : false
-        },
+        }
+        //model de rules
+        //fk da rules
     })
 }

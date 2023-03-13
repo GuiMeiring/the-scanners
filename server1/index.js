@@ -23,4 +23,5 @@ global.app.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocu
 
 global.app.express_listener_instance = global.app.express.listen(port, () => {
     console.log('Express is listen on ' + global.app.express_listener_instance.address().port)
+    console.log("Documentation: http://localhost:3007/api-docs/")
 });

@@ -64,7 +64,10 @@ knl.put('group', async(req, resp) => {
         id : req.body.id
     }});
     
-    resp.send(result);
+    
+    resp.json({"status":"OK"});
+    resp.end();
+    
 });
 knl.delete('group/:id', async(req,resp)=>{
     const result = await knl.sequelize().models.Group.destroy({
@@ -72,6 +75,6 @@ knl.delete('group/:id', async(req,resp)=>{
             id: req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })

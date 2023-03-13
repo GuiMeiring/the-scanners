@@ -248,6 +248,141 @@
                 }
 
             }
+        },
+        "/group":{
+            "post":{
+                "description":"Cadastrar grupo",
+                "summary":"Essa rota é responsável por cadastrar um grupo",
+                "tags":["Grupo"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "$ref":"#/components/schemas/Group",
+                                "required":true
+                            },
+                            "examples":{
+                                "grupo":{
+                                    "value":{
+                                        "description":"Calça"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+
+
+            },
+            "get":{
+                "description":"Buscar todos grupos",
+                "summary":"Essa rota é responsável por buscar todos grupos",
+                "tags":["Grupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Group"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+
+
+            },
+            "put":{
+                "description":"Edita um grupo",
+                "summary":"Essa rota é responsável por editar um único grupo passando seu id pelo body",
+                "tags":["Grupo"],
+                "security":[{"bearerAuth":[]}],
+
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                
+                                    "description":{
+                                        "type": "string",
+                                        "example":"grupo1",
+                                        "description": "Descrição do grupo"
+                                    },
+                                    "id":{
+                                        "type":"integer",
+                                        "example":"1",
+                                        "description": "id do grupo"
+                                    }
+
+                                },
+                                "required": [
+                                    "description","id"
+                                ]
+
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+
+            }
         }
     },
         
@@ -280,6 +415,17 @@
                             "description":"comfirmação da senha"
                         }
                     }
+                },
+                "Group":{
+                    "required":["description"],
+                    "properties":{
+                        "description":{
+                            "type":"string",
+                            "description":"Descrição do grupo"
+                        }
+
+                    }
+                    
                 }
             },
             "securitySchemes":{
