@@ -5,6 +5,7 @@
                 <mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.caption}}
             </button>
           </mat-action-list>
+          <button mat-icon-button class="botao" (click)="load()"><mat-icon>logout</mat-icon></button>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
