@@ -105,7 +105,7 @@ knl.get('products', async (req, resp)=>{
     resp.json(result);
     resp.end();
 })
-knl.get('products/:id', async (req, resp)=>{
+knl.get('products/:id', async (req,resp)=>{
     const result =await knl.sequelize().models.Products.findAll({
         where: {
             id:req.params.id,

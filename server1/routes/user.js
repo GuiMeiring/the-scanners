@@ -8,7 +8,8 @@ knl.post('user', async(req, resp) => {
         name : Joi.string().min(1).max(100).required(),
         username : Joi.string().min(1).max(100).required(),
         password : Joi.string().min(6).max(16).required(),
-        cpassword : Joi.string().min(6).max(16).required()
+        cpassword : Joi.string().min(6).max(16).required(),
+        roles : Joi.number().min(1).max(11).required()
     })
 
     knl.validate(req.body, schema);
@@ -26,6 +27,7 @@ knl.post('user', async(req, resp) => {
         name : req.body.name,
         username : req.body.username,
         password : md5(req.body.password),
+        roles: req.body.roles,
         status   : 1
     });
 
@@ -41,7 +43,7 @@ knl.get('user', async (req, resp)=>{
     resp.json(result);
     resp.end();
 })
-knl.patch('user/:id', async(req,resp)=>{
+knl.patch('user/:id', async(req, resp)=>{
     knl.createException('0007', '', req.body.password != req.body.cpassword);
     const result = await knl.sequelize().models.Usuario.update({
         password : md5(req.body.password),
@@ -54,7 +56,7 @@ knl.patch('user/:id', async(req,resp)=>{
     resp.json(result);
     resp.end();
 })
-knl.patch('user', async(req,resp)=>{
+knl.patch('user', async(req, resp)=>{
     const result = await knl.sequelize().models.Usuario.update({
         status:0,
     },
