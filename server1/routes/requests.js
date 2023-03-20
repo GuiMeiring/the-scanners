@@ -66,7 +66,7 @@ knl.post('requests', async(req, resp) =>{
     }
 
     resp.end();
-}, securityConsts.USER_TYPE_PUBLIC);
+});
 
 knl.get('requests/:id', async (req, resp)=>{
     let result =await knl.sequelize().models.Requests.findAll({

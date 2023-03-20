@@ -24,6 +24,8 @@ knl.post('group', async(req, resp) =>{
     });
    
     await group.save();
+    await resp.json({ "status": "OK" });
+    resp.end()
 
 })
 knl.get('group', async (req, resp)=>{

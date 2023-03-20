@@ -8,7 +8,8 @@ knl.post('user', async(req, resp) => {
         name : Joi.string().min(1).max(100).required(),
         username : Joi.string().min(1).max(100).required(),
         password : Joi.string().min(6).max(16).required(),
-        cpassword : Joi.string().min(6).max(16).required()
+        cpassword : Joi.string().min(6).max(16).required(),
+        roles: Joi.number().min(1).max(11).required()
     })
     console.log(req.body);
 
@@ -24,16 +25,17 @@ knl.post('user', async(req, resp) => {
     knl.createException('0007', '', req.body.password != req.body.cpassword);
 
     const user = knl.sequelize().models.Usuario.build({
-        name : req.body.name,
+        name     : req.body.name,
         username : req.body.username,
         password : md5(req.body.password),
+        roles    : req.body.roles,
         status   : 1
     });
 
     await user.save();
     await resp.json({"status":"ok"});
     resp.end();
-},  securityConsts.USER_TYPE_PUBLIC);
+});
 knl.get('user', async (req, resp)=>{
     const result =await knl.sequelize().models.Usuario.findAll({
         where: {

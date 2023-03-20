@@ -33,7 +33,8 @@
                                                 "name":"Guilherme",
                                                 "username":"GuiMeiring",
                                                 "password":"gui123",
-                                                "cpassword":"gui123"
+                                                "cpassword":"gui123",
+                                                "roles":"1"
                                                 
                                             }
                                         }
@@ -457,62 +458,1519 @@
                 }
 
             }
-        }
-    },
-        
-        "components":{
-            "schemas":{
-                "User":{
-                    "required":[
-                        "name",
-                        "username",
-                        "password",
-                        "cpassword"
-                    ],
-                    "properties":{
-                        "name":{
-                            "type":"string",
-                            "description":"nome completo do usuário"
-                        },
-                        "username":{
-                            "type":"string",
-                            "description":"nome do usuário para o login"
-                        },
-                        "password":{
-                            "type":"string",
-                            "format":"password",
-                            "description":"senha do usuário"
-                        },
-                        "cpassword":{
-                            "type":"string",
-                            "format":"password",
-                            "description":"comfirmação da senha"
+        },
+        "/subgroup":{
+            "post":{
+                "summary":"Cadastro  de subgrupo",
+                "description":"Essa rota é responsável pelo cadastro de um novo subgrupo",
+                "tags":["SubGrupo"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                        "$ref":"#/components/schemas/SubGroup"
+                                        
+                            },
+                                     "examples":{
+                                        "subgroup":{
+                                            "value":{
+                                                "description":"longa",
+                                                "fkGroup":"1"
+                                                
+                                            }
+                                        }
+                                        }
+                                    
+                                
+                            
+                        
                         }
                     }
                 },
-                "Group":{
-                    "required":["description"],
-                    "properties":{
-                        "description":{
-                            "type":"string",
-                            "description":"Descrição do grupo"
-                        }
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
 
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
                     }
-                    
                 }
             },
-            "securitySchemes":{
-                "bearerAuth":{
-                    "type":"http",
-                    "scheme":"bearer",
-                    "bearerFormat":"JWT"
+            "get":{
+                "description":"Buscar todos subgrupos",
+                "summary":"Essa rota é responsável por buscar todos subgrupos",
+                "tags":["SubGrupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/SubGroup"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita um subgrupo",
+                "summary":"Essa rota é responsável por editar um único subgrupo passando seu id pelo body",
+                "tags":["SubGrupo"],
+                "security":[{"bearerAuth":[]}],
+
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "description":{
+                                        "type": "string",
+                                        "example":"curta",
+                                        "description": "Descrição do subgrupo"
+                                    },
+                                    "id":{
+                                        "type":"integer",
+                                        "example":"1",
+                                        "description": "id do subgrupo"
+                                    }
+
+                                },
+                                "required": [
+                                    "description","id"
+                                ]
+
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
                 }
             }
-        }
-        
-        
+        },
+        "/subgroups":{
+            "get":{
+                "description":"Buscar todos subgrupos",
+                "summary":"Essa rota é responsável por buscar todos subgrupos",
+                "tags":["SubGrupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/SubGroup"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/subgroup/{id}":{
+            "get":{
+                "description": "Buscar um único subgrupo pelo id",
+                "summary": "Essa rota é responsável por buscar um único subgrupo pelo id",
+                "tags": ["SubGrupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "subgrupo pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/SubGroup"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
 
+            },
+            "patch":{
+                "description": "Edita o 'status' de um  subgrupo para '0' pelo id",
+                "summary": "Essa rota é responsável por inatival o subgrupo  pelo id",
+                "tags": ["SubGrupo"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "subgrupo pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+                    }
+                }
+            }
+        },
+        "/collection":{
+            "post":{
+                "summary":"Cadastro  de coleção",
+                "description":"Essa rota é responsável pelo cadastro de uma nova coleção",
+                "tags":["Coleção"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref":"#/components/schemas/Collection"
+                                        
+                            },
+                            "examples":{
+                                "subgroup":{
+                                    "value":{
+                                        "description":"Inverno 2023"     
+                                    }
+                                 }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            },
+            "get":{
+                "description":"Buscar todas coleções",
+                "summary":"Essa rota é responsável por buscar todas coleções",
+                "tags":["Coleção"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Collection"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
     
+                    },
+                    "403":{
+                        "description":"Invalid token"
     
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita uma coleção",
+                "summary":"Essa rota é responsável por editar uma única coleção passando seu id pelo body",
+                "tags":["Coleção"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "description":{
+                                        "type": "string",
+                                        "example":"Inverno 2024",
+                                        "description": "Descrição da coleção"
+                                    },
+                                    "id":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"id da coleção"
+                                    }
+                                },
+                                "required": [
+                                    "description","id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/collection/{id}":{
+            "get":{
+                "description": "Buscar uma única coleção pelo id",
+                "summary": "Essa rota é responsável por buscar uma única coleção pelo id",
+                "tags": ["Coleção"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "id da coleção",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Collection"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "patch":{
+                "description": "Edita o 'status' de uma coleção para '0' pelo id",
+                "summary": "Essa rota é responsável por inatival a coleção  pelo id",
+                "tags": ["Coleção"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "id da coleção",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+            }
+        },
+        "/products":{
+            "post":{
+                "summary":"Cadastro  de produto",
+                "description":"Essa rota é responsável pelo cadastro de um novo produto",
+                "tags":["Produto"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "$ref":"#/components/schemas/Products"
+                                        
+                            },
+                            "examples":{
+                                "products":{
+                                    "value":{
+                                        "description":"Tamanho M",
+                                        "salePrice":69.90,
+                                        "fkSubGroup":1,
+                                        "fkGroup" :1,
+                                        "fkCollection":1
+                                    }
+                                 }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            },
+            "get":{
+                "description":"Buscar todos produtos",
+                "summary":"Essa rota é responsável por buscar todos produtos",
+                "tags":["Produto"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Products"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita um produto",
+                "summary":"Essa rota é responsável por editar um produto passando seu id pelo body",
+                "tags":["Produto"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "description":{
+                                        "type": "string",
+                                        "example":"tamanho P",
+                                        "description": "Descrição do produto"
+                                    },
+                                    "salePrice":{
+                                        "type": "float",
+                                        "example":"56,90",
+                                        "description": "Preço do produto"
+                                    },
+                                    "fkSubGroup":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"Id do subgrupo"
+
+                                    },
+                                    "fkGroup":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"Id do grupo"
+
+                                    },
+                                    "fkCollection":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"id da coleção"
+
+                                    },
+                                    "id":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"Id do produto"
+                                    }
+                                },
+                                "required": [
+                                    "description","id","salePrice","fkSubGroup","fkGroup","fkCollection"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/products/{id}":{
+            "get":{
+                "description": "Buscar um único produto pelo id",
+                "summary": "Essa rota é responsável por buscar um único produto pelo id",
+                "tags": ["Produto"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do produto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Products"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "patch":{
+                "description": "Edita o 'status' de um produto para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar o produto  pelo id",
+                "tags": ["Produto"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do produto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+            }
+            
+        },
+        "/client":{
+            "post":{
+                "summary":"Cadastro  de cliente",
+                "description":"Essa rota é responsável pelo cadastro de um novo cliente",
+                "tags":["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "required":["name","cnpj","razaoSocial","dateClient"],
+                                
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example":"Malwee",
+                                        "description": "Nome do Cliente"
+                                    },
+                                    "cnpj":{
+                                        "type": "string",
+                                        "example":"12345678901234",
+                                        "description": "cnpj do cliente"
+                                    },
+                                    "razaoSocial":{
+                                        "type":"string",
+                                        "example":"Malwee",
+                                        "description":"Razão Social da empresa"
+
+                                    },
+                                    "dateClient":{
+                                        "type":"string",
+                                        "format":"date",
+                                        "example":"2017-07-21T17:32:28Z",
+                                        "description":"Cliente desde"
+
+                                    },
+                                    "adddress":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "rua":{
+                                                    "type":"string",
+                                                    "example":"Rua Bertha Weege",
+                                                    "description":"rua do cliente"
+                                                },
+                                                "bairro":{
+                                                    "type":"string",
+                                                    "example":"Barra do Rio Cerro",
+                                                    "description":"bairro do cliente"
+                                                },
+                                                "cidade":{
+                                                    "type":"string",
+                                                    "example":"Jaraguá do Sul",
+                                                    "description":"cidade do cliente"
+                                                },
+                                                "estado":{
+                                                    "type":"string",
+                                                    "example":"SC",
+                                                    "description":"estado do cliente"
+                                                },
+                                                "cep":{
+                                                    "type":"string",
+                                                    "example":"89260-900",
+                                                    "description":"cep do cliente"  
+                                                },
+                                                "numero":{
+                                                    "type":"integer",
+                                                    "example":200,
+                                                    "description":"numero do cliente"  
+                                                },
+                                                "complemento":{
+                                                    "type":"string",
+                                                    "example":"Rua principal",
+                                                    "description":"complemento"
+                                                },
+                                                "pontoDeReferencia":{
+                                                    "type":"string",
+                                                    "example":"parque Malwee",
+                                                    "description":"complemento"
+                                                }
+                                            }
+
+                                        },
+                                        "description":"Array de endereços"
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+                
+            },
+            "get":{
+                "description":"Buscar todos clientes",
+                "summary":"Essa rota é responsável por buscar todos clientes",
+                "tags":["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Clients"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita um produto",
+                "summary":"Essa rota é responsável por editar um produto passando seu id pelo body",
+                "tags":["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "required":["name","cnpj","razaoSocial","dateClient"],
+                                
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example":"Malwee",
+                                        "description": "Nome do Cliente"
+                                    },
+                                    "razaoSocial":{
+                                        "type":"string",
+                                        "example":"Malwee",
+                                        "description":"Razão Social da empresa"
+
+                                    },
+                                    "idClient":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"id do cliente"
+
+                                    },
+                                    "adddress":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "rua":{
+                                                    "type":"string",
+                                                    "example":"Rua Bertha Weege",
+                                                    "description":"rua do cliente"
+                                                },
+                                                "bairro":{
+                                                    "type":"string",
+                                                    "example":"Barra do Rio Cerro",
+                                                    "description":"bairro do cliente"
+                                                },
+                                                "cidade":{
+                                                    "type":"string",
+                                                    "example":"Jaraguá do Sul",
+                                                    "description":"cidade do cliente"
+                                                },
+                                                "estado":{
+                                                    "type":"string",
+                                                    "example":"SC",
+                                                    "description":"estado do cliente"
+                                                },
+                                                "cep":{
+                                                    "type":"string",
+                                                    "example":"89260-900",
+                                                    "description":"cep do cliente"  
+                                                },
+                                                "numero":{
+                                                    "type":"integer",
+                                                    "example":200,
+                                                    "description":"numero do cliente"  
+                                                },
+                                                "complemento":{
+                                                    "type":"string",
+                                                    "example":"Rua principal",
+                                                    "description":"complemento"
+                                                },
+                                                "pontoDeReferencia":{
+                                                    "type":"string",
+                                                    "example":"parque Malwee",
+                                                    "description":"complemento"
+                                                },
+                                                "id":{
+                                                    "type":"integer",
+                                                    "description":"Id do endereço",
+                                                    "example":1
+                                                }
+                                            }
+
+                                        },
+                                        "description":"Array de endereços"
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/client/{id}":{
+            "get":{
+                "description": "Buscar um único cliente pelo id",
+                "summary": "Essa rota é responsável por buscar um único cliente pelo id",
+                "tags": ["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do cliente",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Clients"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "patch":{
+                "description": "Edita o 'status' de um cliente para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar o cliente pelo id",
+                "tags": ["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do cliente",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+            },
+            "post":{
+                "summary":"Cadastro  de cliente",
+                "description":"Essa rota é responsável pelo cadastro de um novo cliente",
+                "tags":["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "required":["name","cnpj","razaoSocial","dateClient"],
+                                
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "example":"Malwee",
+                                        "description": "Nome do Cliente"
+                                    },
+                                    "razaoSocial":{
+                                        "type":"string",
+                                        "example":"Malwee",
+                                        "description":"Razão Social da empresa"
+
+                                    },
+                                    "idClient":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"id do cliente"
+
+                                    },
+                                    "adddress":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "rua":{
+                                                    "type":"string",
+                                                    "example":"Rua Bertha Weege",
+                                                    "description":"rua do cliente"
+                                                },
+                                                "bairro":{
+                                                    "type":"string",
+                                                    "example":"Barra do Rio Cerro",
+                                                    "description":"bairro do cliente"
+                                                },
+                                                "cidade":{
+                                                    "type":"string",
+                                                    "example":"Jaraguá do Sul",
+                                                    "description":"cidade do cliente"
+                                                },
+                                                "estado":{
+                                                    "type":"string",
+                                                    "example":"SC",
+                                                    "description":"estado do cliente"
+                                                },
+                                                "cep":{
+                                                    "type":"string",
+                                                    "example":"89260-900",
+                                                    "description":"cep do cliente"  
+                                                },
+                                                "numero":{
+                                                    "type":"integer",
+                                                    "example":200,
+                                                    "description":"numero do cliente"  
+                                                },
+                                                "complemento":{
+                                                    "type":"string",
+                                                    "example":"Rua principal",
+                                                    "description":"complemento"
+                                                },
+                                                "pontoDeReferencia":{
+                                                    "type":"string",
+                                                    "example":"parque Malwee",
+                                                    "description":"complemento"
+                                                },
+                                                "id":{
+                                                    "type":"integer",
+                                                    "description":"Id do endereço",
+                                                    "example":1
+                                                }
+                                            }
+
+                                        },
+                                        "description":"Array de endereços"
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            }
+        },
+        "/ClientsEndereco/{id}":{
+            "get":{
+                "description": "Buscar um único endereco do cliente pelo id",
+                "summary": "Essa rota é responsável por buscar um único endereco do cliente pelo id",
+                "tags": ["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do endereço",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Enderecos"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "patch":{
+                "description": "Edita o 'status' de um endereco do cliente para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar um endereco do cliente pelo id",
+                "tags": ["Cliente"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do endereco",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+            }
+        },
+        "/requests":{
+            "post":{
+                "summary":"Cadastro  de pedido",
+                "description":"Essa rota é responsável pelo cadastro de um novo pedido",
+                "tags":["Pedidos"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "required":["fkClients","fkAddress","DateEmisson","DateDelivery","total"],
+                                
+                                "properties": {
+                                    "fkClients":{
+                                        "type": "integer",
+                                        "example":1,
+                                        "description": "Id do Cliente"
+                                    },
+                                    "fkAddress":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"Id do endereço"
+
+                                    },
+                                    "DateEmisson":{
+                                        "type":"string",
+                                        "format":"date",
+                                        "example":"2017-07-21T17:32:28Z",
+                                        "description":"Data de emissão"
+
+                                    },
+                                    "DateDelivery":{
+                                        "type":"string",
+                                        "format":"date",
+                                        "example":"2017-07-21T17:32:28Z",
+                                        "description":"Data de entrega"
+                                    },
+                                    "total":{
+                                        "type":"float",
+                                        "example":28.90,
+                                        "description":"Total do pedido"
+
+                                    },
+                                    "prodRequests":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "fkProducts":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"Id de fkProducts"
+                                                },
+                                                "amount":{
+                                                    "type":"integer",
+                                                    "example":2,
+                                                    "description":"quantidade do produto"
+                                                },
+                                                "unitPrice":{
+                                                    "type":"float",
+                                                    "example":4.45,
+                                                    "description":"preço do produto unitário"
+                                                },
+                                                "discount":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"desconto do produto"
+                                                },
+                                                "increase":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"Acrescento do produto"  
+                                                },
+                                                "total":{
+                                                    "type":"float",
+                                                    "example":28.90,
+                                                    "description":"Preço total dos produtos"  
+                                                }
+                                            }
+
+                                        },
+                                        "description":"Array de produtos"
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "User":{
+                "required":[
+                    "name",
+                    "username",
+                    "password",
+                    "cpassword",
+                    "roles"
+                ],
+                "properties":{
+                    "name":{
+                        "type":"string",
+                        "description":"nome completo do usuário"
+                    },
+                    "username":{
+                        "type":"string",
+                        "description":"nome do usuário para o login"
+                    },
+                    "password":{
+                        "type":"string",
+                        "format":"password",
+                        "description":"senha do usuário"
+                    },
+                    "cpassword":{
+                        "type":"string",
+                        "format":"password",
+                        "description":"comfirmação da senha"
+                    },
+                    "roles":{
+                        "type":"integer",
+                        "description":"autorização do usuário"
+                    }
+                }
+            },
+            "Group":{
+                "required":["description"],
+                "properties":{
+                    "description":{
+                        "type":"string",
+                        "description":"Descrição do grupo"
+                    }
+                }  
+            },
+            "SubGroup":{
+                "required":["description","fkGroup"],
+                "properties":{
+                    "description":{
+                        "type":"string",
+                        "description":"Descrição do subgrupo"
+                    },
+                    "fkGroup":{
+                        "type":"integer",
+                        "description":"id do grupo que o subgrupo pertence"
+                    }
+                }
+            },
+            "Collection":{
+                "required":["description"],
+                "properties":{
+                    "decription":{
+                        "type":"string",
+                        "description":"Descrição da coleção"
+                    }
+                }
+            },
+            "Products":{
+                "required":["description","salePrice","fkGroup","fkSubGroup"],
+                "properties":{
+                    "description":{
+                        "type":"string",
+                        "description":"Descrição do produto"
+                    },
+                    "salePrice":{
+                        "type":"float",
+                        "description":"Valor unitario"
+                    },
+                    "fkSubGroup":{
+                        "type":"integer",
+                        "description":"Id do subgrupo"
+                    },
+                    "fkGroup":{
+                        "type":"integer",
+                        "description":"id do grupo"
+                    },
+                    "fkCollection":{
+                        "type":"integer",
+                        "description":"id da coleção"
+                    }
+                }
+            },
+            "Clients":{
+                "required":["name","cnpj","razaoSocial","dateClient"],
+                "properties":{
+                    "name":{
+                        "type":"string",
+                        "description":"Nome do Cliente"
+                    },
+                    "cnpj":{
+                        "type":"string",
+                        "decription":"cnpj da empresa"
+                    },
+                    "razaoSocial":{
+                        "type":"string",
+                        "description":"Razão Social da empresa"
+                    },
+                    "dateClient":{
+                        "type":"string",
+                        "format":"date",
+                        "example":"2017-07-21T17:32:28Z",
+                        "description":"Cliente desde"
+                    }
+                }
+            },
+            "Enderecos":{
+                "properties":{
+                    "rua":{
+                        "type":"string",
+                        "description":"rua do cliente"
+                    },
+                    "bairro":{
+                        "type":"string",
+                        "description":"bairro do cliente"
+                    },
+                    "cidade":{
+                        "type":"string",
+                        "description":"cidade do cliente"
+                    },
+                    "estado":{
+                        "type":"string",
+                        "description":"estado do cliente"
+                    },
+                    "cep":{
+                        "type":"string",
+                        "description":"cep do cliente"  
+                    },
+                    "numero":{
+                        "type":"integer",
+                        "description":"numero do cliente"  
+                    },
+                    "complemento":{
+                        "type":"string",
+                        "description":"complemento"
+                    },
+                    "pontoDeReferencia":{
+                        "type":"string",
+                        "description":"complemento"
+                    },
+                    "fkClients":{
+                        "type":"integer",
+                        "description":"id do cliente"  
+                    }
+                }
+            },
+            "Requests":{
+                "required":["fkClients","fkAddress","DateEmisson","DateDelivery","total"],
+                "properties":{
+                    "fkClients":{
+                        "type":"integer",
+                        "description":"Id do cliente"
+                    },
+                    "fkAddress":{
+                        "type":"integer",
+                        "description":"Id do endereço"
+                    },
+                    "DateEmission":{
+                        "type":"string",
+                        "format":"date-time",
+                        "description":"Data de emissão"
+                    },
+                    "DateDelivery":{
+                        "type":"string",
+                        "format":"date-time",
+                        "description":"Data de entrega"
+                    },
+                    "total":{
+                        "type":"float",
+                        "description":"Total do pedido"
+                    }
+                }
+            },
+            "ProdRequests":{
+                "required":["fkRequests","fkProducts","amount","discount","increase","total"],
+                "properties":{
+                    "fkRequests":{
+                        "type":"integer",
+                        "description":"Id do pedido"
+                    },
+                    "fkProducts":{
+                        "type":"integer",
+                        "description":"Id do produto"
+                    },
+                    "amount":{
+                        "type":"integer",
+                        "description":"quantidade de produto"
+                    },
+                    "unitPrice":{
+                        "type":"float",
+                        "description":"Preço unitário"
+                    },
+                    "discount":{
+                        "type":"integer",
+                        "description":"Desconto do pedido"
+                    },
+                    "increase":{
+                        "type":"integer",
+                        "description":"Acrescento do pedido"
+                    },
+                    "total":{
+                        "type":"float",
+                        "description":"Total do pedido"
+                    }
+                }
+            }
+        },
+        "securitySchemes":{
+            "bearerAuth":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormat":"JWT"
+            }
+        }
+    }
 }

@@ -22,6 +22,7 @@ knl.post('collection', async(req, resp) => {
     });
 
     await collection.save();
+    await resp.json({"status":"OK"})
     resp.end();
 }
 )
@@ -52,7 +53,7 @@ knl.put('collection', async(req, resp) => {
         id : req.body.id
     }});
     
-    resp.send(result);
+    resp.json({"status":"OK"})
 });
 knl.patch('collection/:id', async(req,resp)=>{
     const result = await knl.sequelize().models.Collection.update({
@@ -63,15 +64,6 @@ knl.patch('collection/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"})
     resp.end();
-})
-knl.delete('collection/:id', async(req,resp)=>{
-    const result = await knl.sequelize().models.Collection.destroy({
-        where:{
-            id: req.params.id
-        }
-    });
-    resp.json(result);
-    resp.end();
-})
+});
