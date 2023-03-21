@@ -1302,7 +1302,7 @@
                                         "description":"id do cliente"
 
                                     },
-                                    "adddress":{
+                                    "address":{
                                         "type":"array",
                                         "items":{
                                             "type":"object",
@@ -1456,33 +1456,22 @@
                 "summary":"Cadastro  de cliente",
                 "description":"Essa rota é responsável pelo cadastro de um novo cliente",
                 "tags":["Cliente"],
+                "parameters": [{
+                    "name":"id",
+                    "in":"path",
+                    "description": "Id do cliente",
+                    "required": true
+                   }
+                ],
                 "security":[{"bearerAuth":[]}],
                 "requestBody":{
                     "content":{
                         "application/json":{
                             "schema":{
                                 "type": "object",
-                                "required":["name","cnpj","razaoSocial","dateClient"],
-                                
-                                "properties": {
-                                    "name":{
-                                        "type": "string",
-                                        "example":"Malwee",
-                                        "description": "Nome do Cliente"
-                                    },
-                                    "razaoSocial":{
-                                        "type":"string",
-                                        "example":"Malwee",
-                                        "description":"Razão Social da empresa"
-
-                                    },
-                                    "idClient":{
-                                        "type":"integer",
-                                        "example":1,
-                                        "description":"id do cliente"
-
-                                    },
-                                    "adddress":{
+                                "required":["address"],
+                                   "properties": {
+                                    "address":{
                                         "type":"array",
                                         "items":{
                                             "type":"object",
@@ -1526,11 +1515,6 @@
                                                     "type":"string",
                                                     "example":"parque Malwee",
                                                     "description":"complemento"
-                                                },
-                                                "id":{
-                                                    "type":"integer",
-                                                    "description":"Id do endereço",
-                                                    "example":1
                                                 }
                                             }
 
@@ -1565,7 +1549,7 @@
                 }
             }
         },
-        "/ClientsEndereco/{id}":{
+        "/clientEndereco/{id}":{
             "get":{
                 "description": "Buscar um único endereco do cliente pelo id",
                 "summary": "Essa rota é responsável por buscar um único endereco do cliente pelo id",
@@ -1604,7 +1588,9 @@
     
                     }
                 }
-            },
+            }
+        },
+        "/ClientsEndereco/{id}":{
             "patch":{
                 "description": "Edita o 'status' de um endereco do cliente para '0' pelo id",
                 "summary": "Essa rota é responsável por inativar um endereco do cliente pelo id",
@@ -1640,14 +1626,14 @@
             "post":{
                 "summary":"Cadastro  de pedido",
                 "description":"Essa rota é responsável pelo cadastro de um novo pedido",
-                "tags":["Pedidos"],
+                "tags":["Pedido"],
                 "security":[{"bearerAuth":[]}],
                 "requestBody":{
                     "content":{
                         "application/json":{
                             "schema":{
                                 "type": "object",
-                                "required":["fkClients","fkAddress","DateEmisson","DateDelivery","total"],
+                                "required":["fkClients","fkAddress","DateEmission","DateDelivery","total"],
                                 
                                 "properties": {
                                     "fkClients":{
@@ -1661,7 +1647,7 @@
                                         "description":"Id do endereço"
 
                                     },
-                                    "DateEmisson":{
+                                    "DateEmission":{
                                         "type":"string",
                                         "format":"date",
                                         "example":"2017-07-21T17:32:28Z",
@@ -1746,7 +1732,431 @@
                         
                     }
                 }
+            },
+            "get":{
+                "description":"Buscar todos pedidos",
+                "summary":"Essa rota é responsável por buscar todos pedidos",
+                "tags":["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Requests"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita um pedido",
+                "summary":"Essa rota é responsável por editar um pedido passando seu id pelo body",
+                "tags":["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "required":["fkRequests","fkClients","fkAddress","DateEmission","DateDelivery","total"],
+                                
+                                "properties": {
+                                    "fKRequests":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"id do pedido"
+                                        
+                                    },
+                                    "fkClients":{
+                                        "type": "integer",
+                                        "example":1,
+                                        "description": "Id do Cliente"
+                                    },
+                                    "fkAddress":{
+                                        "type":"integer",
+                                        "example":1,
+                                        "description":"Id do endereço"
 
+                                    },
+                                    "DateEmission":{
+                                        "type":"string",
+                                        "format":"date",
+                                        "example":"2017-08-21T17:32:28Z",
+                                        "description":"Data de emissão"
+
+                                    },
+                                    "DateDelivery":{
+                                        "type":"string",
+                                        "format":"date",
+                                        "example":"2017-07-21T17:32:28Z",
+                                        "description":"Data de entrega"
+                                    },
+                                    "total":{
+                                        "type":"float",
+                                        "example":28.90,
+                                        "description":"Total do pedido"
+
+                                    },
+                                    "prodRequests":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "fkProducts":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"Id de fkProducts"
+                                                },
+                                                "amount":{
+                                                    "type":"integer",
+                                                    "example":2,
+                                                    "description":"quantidade do produto"
+                                                },
+                                                "unitPrice":{
+                                                    "type":"float",
+                                                    "example":4.45,
+                                                    "description":"preço do produto unitário"
+                                                },
+                                                "discount":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"desconto do produto"
+                                                },
+                                                "increase":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"Acrescento do produto"  
+                                                },
+                                                "total":{
+                                                    "type":"float",
+                                                    "example":28.90,
+                                                    "description":"Preço total dos produtos"  
+                                                }
+                                            }
+
+                                        },
+                                        "description":"Array de produtos"
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/requests/{id}":{
+            "get":{
+                "description": "Buscar um único pedido pelo id",
+                "summary": "Essa rota é responsável por buscar um único pedido pelo id",
+                "tags": ["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do pedido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Requests"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "patch":{
+                "description": "Edita o 'status' de um pedido para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar o pedido pelo id",
+                "tags": ["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do pedido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+           }
+        },
+        "/ProdRequests":{
+            "post":{
+                "summary":"Cadastro  de produtos de um pedido",
+                "description":"Essa rota é responsável pelo cadastro de um novo produtos de um pedido",
+                "tags":["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "required":["fkRequests","prodRequests"],
+                                "properties": {
+                                    "fkRequests":{
+                                        "type": "integer",
+                                        "example":1,
+                                        "description": "Id do pedido"
+                                    },
+                                    "prodRequests":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "fkProducts":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"Id de fkProducts"
+                                                },
+                                                "amount":{
+                                                    "type":"integer",
+                                                    "example":2,
+                                                    "description":"quantidade do produto"
+                                                },
+                                                "unitPrice":{
+                                                    "type":"float",
+                                                    "example":4.45,
+                                                    "description":"preço do produto unitário"
+                                                },
+                                                "discount":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"desconto do produto"
+                                                },
+                                                "increase":{
+                                                    "type":"integer",
+                                                    "example":1,
+                                                    "description":"Acrescento do produto"  
+                                                },
+                                                "total":{
+                                                    "type":"float",
+                                                    "example":28.90,
+                                                    "description":"Preço total dos produtos"  
+                                                }
+                                            }
+
+                                        },
+                                        "description":"Array de produtos"
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            }
+        },
+        "/ProdRequests/{id}":{
+            "get":{
+                "description": "Busca os produtos de um pedido pelo id",
+                "summary": "Essa rota é responsável por buscar os produto de um pedido pelo id",
+                "tags": ["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do  pedido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/ProdRequests"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "patch":{
+                "description": "Edita o 'status' de um produto de um pedido para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar um produto de um pedido pelo id",
+                "tags": ["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do produto pedido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+
+                }
+            }
+        },
+        "/requestsAdd/{id}":{
+            "patch":{
+                "description": "Editar o total do pedido",
+                "summary": "Essa rota é por editar o total pedido pelo id",
+                "tags": ["Pedido"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Id do pedido",
+                        "required": true
+                    }
+                ],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "total":{
+                                        "type": "float",
+                                        "example":28.90,
+                                        "description": "Total do pedidou"
+                                    }
+                                },
+                                "required": [
+                                    "total"
+                                ]
+
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    }
+                }
             }
         }
     },
