@@ -113,7 +113,7 @@ knl.get('requests/:id', async (req, resp)=>{
     resp.json(result);
     resp.end();
 })
-knl.get('requests', async (req, resp)=>{
+knl.get('requests', async (req,resp)=>{
     let result =await knl.sequelize().models.Requests.findAll({
         where: {
             status:1
@@ -183,7 +183,7 @@ knl.get('ProdRequests/:id', async (req, resp)=>{
     }
     resp.send(result);
 })
-knl.put('requests', async(req,resp)=>{
+knl.put('requests', async(req, resp)=>{
     const result = await knl.sequelize().models.Requests.update({
         fkClients:req.body.fkClients,
         DateEmission: req.body.DateEmission,

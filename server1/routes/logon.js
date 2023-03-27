@@ -5,7 +5,7 @@ const jwt = require('../utils/jwt');
 const md5 = require('../utils/md5-pass');
 
 
-knl.post('logon', async (req, resp) => {
+knl.post('logon', async (req,  resp) => {
     const schema = Joi.object({
         username : Joi.string().max(100).min(1).required(),
         password : Joi.string().max(16).min(6).required()

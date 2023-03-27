@@ -28,7 +28,7 @@ knl.post('group', async(req, resp) =>{
     resp.end()
 
 })
-knl.get('group', async (req, resp)=>{
+knl.get('group', async (req,resp)=>{
     const result =await knl.sequelize().models.Group.findAll({
         where: {
             status:1
@@ -37,7 +37,7 @@ knl.get('group', async (req, resp)=>{
     
     resp.json(result);
 })
-knl.get('group/:id', async (req, resp)=>{
+knl.get('group/:id', async (req,resp)=>{
     const result =await knl.sequelize().models.Group.findAll({
     where:{
         id:req.params.id

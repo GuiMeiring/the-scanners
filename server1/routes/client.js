@@ -98,7 +98,7 @@ knl.get('client/:id', async (req, resp)=>{
     });
     resp.send(result2);
 })
-knl.put('client', async(req,resp)=>{
+knl.put('client', async(req, resp)=>{
     const result = await knl.sequelize().models.Clients.update({
         name : req.body.name,
         razaoSocial : req.body.razaoSocial
@@ -128,7 +128,7 @@ knl.put('client', async(req,resp)=>{
     resp.end();
 });
 
-knl.patch('client/:id', async(req,resp)=>{
+knl.patch('client/:id', async(req, resp)=>{
     const result = await knl.sequelize().models.Clients.update({
         status:0
     },
@@ -139,9 +139,9 @@ knl.patch('client/:id', async(req,resp)=>{
     });
     resp.json({"status":"OK"});
     resp.end();
-
 })
 knl.delete('client/:id', async(req,resp)=>{
+
     const result = await knl.sequelize().models.Clients.destroy({
         where:{
             id: req.params.id
@@ -163,7 +163,7 @@ knl.patch('ClientsEndereco/:id', async(req,resp)=>{
     resp.json({"status":"OK"});
     resp.end();
 })
-knl.post('client/:id', async(req, resp) =>{
+knl.post('client/:id', async(req,resp) =>{
     const schema =Joi.object({
         address : Joi.array().items(Joi.object({
             rua : Joi.string().min(3).max(100),

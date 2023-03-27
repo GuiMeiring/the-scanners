@@ -1,8 +1,8 @@
 const Joi = require('joi');
 const knl = require('../knl');
 
-knl.post('subgroup', async (req, resp) => {
-    const schema = Joi.object({
+knl.post('subgroup', async(req,resp) =>{
+    const schema =Joi.object({
         description:
             Joi.string().min(1).max(100).required(),
         fkGroup:
@@ -34,7 +34,8 @@ knl.post('subgroup', async (req, resp) => {
 
 })
 
-knl.get('subgroup', async (req, resp) => {
+
+knl.get('subgroup', async(req,resp) => {
     let result = await knl.sequelize().models.Subgroup.findAll({
         where: {
             status: 1
@@ -62,6 +63,7 @@ knl.get('subgroup', async (req, resp) => {
     resp.end();
 })
 
+
 knl.get('subgroup/:id', async (req, resp) => {
     let result = await knl.sequelize().models.Subgroup.findAll({
         where: {
@@ -83,7 +85,7 @@ knl.get('subgroups', async (req, resp) => {
     resp.json(result);
     resp.end();
 })
-knl.put('subgroup', async (req, resp) => {
+knl.put('subgroup', async(req,resp) => {
     const result = await knl.sequelize().models.Subgroup.update({
         description: req.body.description,
     }, {

@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const knl = require('../knl');
 
-knl.post('collection', async(req, resp) => {
+knl.post('collection', async(req,resp) => {
     const schema = Joi.object({
         description : Joi.string().min(1).max(100).required()
     })
@@ -35,7 +35,7 @@ knl.get('collection', async (req, resp)=>{
     resp.json(result);
     resp.end();
 })
-knl.get('collection/:id', async (req, resp)=>{
+knl.get('collection/:id', async (req,resp)=>{
     const result =await knl.sequelize().models.Collection.findAll({
         where: {
             id:req.params.id,
@@ -45,7 +45,7 @@ knl.get('collection/:id', async (req, resp)=>{
     resp.json(result);
     resp.end();
 })
-knl.put('collection', async(req, resp) => {
+knl.put('collection', async(req,  resp) => {
     const result = await knl.sequelize().models.Collection.update({
         description:req.body.description,
     }, {
@@ -62,6 +62,15 @@ knl.patch('collection/:id', async(req,resp)=>{
     {
     where:{
         id:req.params.id
+        }
+    });
+    resp.json({"status":"OK});
+    resp.end();
+})
+knl.delete('collection/:id', async(req, resp)=>{
+    const result = await knl.sequelize().models.Collection.destroy({
+        where:{
+            id: req.params.id
         }
     });
     resp.json({"status":"OK"})

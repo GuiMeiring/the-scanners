@@ -22,6 +22,7 @@ export class UsuarioComponent implements OnInit {
   username : string = "";
   password : string = "";
   cpassword : string = "";
+  roles: string = "";
 hide: any;
 hide2: any;
   constructor(private httpService : HttpService, public dialog: MatDialog) { }
@@ -35,7 +36,7 @@ hide2: any;
   }
   async postUser(){
     this.users = await this.httpService.post('user', {name : this.name, username : this.username,
-    password : this.password, cpassword : this.cpassword})
+    password : this.password, cpassword : this.cpassword, roles: this.roles})
     this.clear();
     this.ngOnInit()
   }
@@ -44,6 +45,7 @@ hide2: any;
     this.username = "";
     this.password = "";
     this.cpassword = "";
+    this.roles = "";
   }
   modalEdit(): void {
     const ref = this.dialog.open(ModalEditUserComponent, {

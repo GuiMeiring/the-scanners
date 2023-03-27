@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
             type : Sequelize.STRING(50),
             allowNull : false
         },
+        roles : {
+            type : Sequelize.INTEGER,
+            allowNull : false
+        }, 
         status : {
             type : Sequelize.INTEGER,
             allowNull : false

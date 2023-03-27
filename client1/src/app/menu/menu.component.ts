@@ -26,4 +26,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.observer.unsubscribe(this.subscription);
   }
+
+  load() {
+    location.reload()
+  }
 }
