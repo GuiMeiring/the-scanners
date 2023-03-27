@@ -64,6 +64,7 @@ knl.post('client', async(req, resp) =>{
 
         await result2.save();        
     }
+    await resp.json({"status":"OK"});
 
     resp.end();
 });
@@ -123,6 +124,7 @@ knl.put('client', async(req,resp)=>{
             }
         })  
     }
+    resp.json({"status":"OK"});
     resp.end();
 });
 
@@ -135,17 +137,17 @@ knl.patch('client/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 
-}, securityConsts.USER_TYPE_PUBLIC)
+})
 knl.delete('client/:id', async(req,resp)=>{
     const result = await knl.sequelize().models.Clients.destroy({
         where:{
             id: req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.patch('ClientsEndereco/:id', async(req,resp)=>{
@@ -158,7 +160,7 @@ knl.patch('ClientsEndereco/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.post('client/:id', async(req, resp) =>{
@@ -193,6 +195,7 @@ knl.post('client/:id', async(req, resp) =>{
 
         await result2.save();        
     }
+    await resp.json({"status":"OK"});
 
     resp.end();
 });
