@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCadastroComponent } from '../modal-cadastro/modal-cadastro.component';
 
 
 
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
   password : string = 'teste123';
   hide : boolean = true;
 
-  constructor(private router : Router, private httpclient : HttpClient) { }
+  constructor(private router : Router, private httpclient : HttpClient, public dialog : MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -33,5 +35,14 @@ export class LoginComponent implements OnInit {
       }
 
     })
+  }
+  cadastro(){
+    const ref = this.dialog.open(ModalCadastroComponent, {
+      width: '600px'
+    });
+    ref.afterClosed().subscribe(result => {
+      
+    })
+    
   }
 }
