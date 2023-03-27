@@ -217,19 +217,33 @@
                 
             }
         },
-        "/user/patch/{id}":{
+        "/user":{
             "patch":{
                 "description": "Edita o 'status' do usuário para '0' pelo id",
                 "summary": "Essa rota é responsável por inatival o usuário pelo id",
                 "tags": ["Usuário"],
                 "security":[{"bearerAuth":[]}],
-                "parameters": [{
-                        "name":"id",
-                        "in":"path",
-                        "description": "usuário pelo id",
-                        "required": true
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                
+                                    "id":{
+                                        "type": "integer",
+                                        "example":"1,
+                                        "description": "id do usuário"
+                                    }
+                                "required": [
+                                    "id"
+                                ]
+
+                            }
+                        }
                     }
-                ],
+                },
+                
                 "responses": {
                     "400":{
                         "description":"Request needs a token"
