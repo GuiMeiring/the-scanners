@@ -125,8 +125,9 @@ knl.put('products', async(req, resp) => {
         id : req.body.id
     }});
     
-    resp.send(result);
+    
     resp.json({"status":"OK"});
+    resp.end();
 });
 knl.patch('products/:id', async(req,resp)=>{
     const result = await knl.sequelize().models.Products.update({

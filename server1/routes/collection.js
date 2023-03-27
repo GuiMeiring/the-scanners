@@ -64,7 +64,7 @@ knl.patch('collection/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json({"status":"OK});
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.delete('collection/:id', async(req, resp)=>{
