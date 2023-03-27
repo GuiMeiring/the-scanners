@@ -64,7 +64,7 @@ knl.post('client', async(req, resp) =>{
 
         await result2.save();        
     }
-    await resp.json({"status":"OK"});
+    await resp.json({"status":"OK1"});
 
     resp.end();
 });
