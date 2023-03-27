@@ -42,6 +42,7 @@ knl.post('products', async(req, resp) =>{
     });
 
     await products.save();
+    await resp.json({"status":"OK"});
     resp.end();
 
 })
@@ -125,6 +126,7 @@ knl.put('products', async(req, resp) => {
     }});
     
     resp.send(result);
+    resp.json({"status":"OK"});
 });
 knl.patch('products/:id', async(req,resp)=>{
     const result = await knl.sequelize().models.Products.update({
@@ -135,7 +137,7 @@ knl.patch('products/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.delete('products/:id', async(req,resp)=>{
@@ -144,6 +146,6 @@ knl.delete('products/:id', async(req,resp)=>{
             id: req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })

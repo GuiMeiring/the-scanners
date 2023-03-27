@@ -64,9 +64,10 @@ knl.post('requests', async(req, resp) =>{
 
         await result2.save();        
     }
+    await resp.json({"status":"OK"});
 
     resp.end();
-}, securityConsts.USER_TYPE_PUBLIC);
+});
 
 knl.get('requests/:id', async (req, resp)=>{
     let result =await knl.sequelize().models.Requests.findAll({
@@ -211,6 +212,7 @@ knl.put('requests', async(req, resp)=>{
             }
         })  
     }
+    resp.json({"status":"OK"});
     resp.end();
 });
 knl.patch('ProdRequests/:id', async(req,resp)=>{
@@ -230,7 +232,7 @@ knl.patch('ProdRequests/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.patch('requests/:id', async(req,resp)=>{
@@ -243,7 +245,7 @@ knl.patch('requests/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.post('prodRequests', async(req,resp)=>{
@@ -274,6 +276,7 @@ knl.post('prodRequests', async(req,resp)=>{
         })  
         await result2.save();      
     } 
+    await resp.json({"status":"OK"});
     resp.end();
 })
 knl.patch("requestsAdd/:id", async(req,resp)=>{
@@ -285,6 +288,6 @@ knl.patch("requestsAdd/:id", async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.send(result);
+    resp.json({"status":"OK"});resp.send(result);
     resp.end();
 })
