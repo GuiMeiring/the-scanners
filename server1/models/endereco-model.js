@@ -48,8 +48,5 @@ module.exports = (sequelize) => {
             type:Sequelize.INTEGER,
             allowNull:false
         }
-
-
-      
     })
 }  

@@ -24,6 +24,8 @@ knl.post('group', async(req, resp) =>{
     });
    
     await group.save();
+    await resp.json({ "status": "OK" });
+    resp.end()
 
 })
 knl.get('group', async (req,resp)=>{
@@ -53,7 +55,7 @@ knl.patch('group/:id', async(req,resp)=>{
         id:req.params.id
         }
     });
-    resp.json(result);
+    resp.json({"status":"OK"});
     resp.end();
 })
 knl.put('group', async(req, resp) => {
@@ -64,14 +66,8 @@ knl.put('group', async(req, resp) => {
         id : req.body.id
     }});
     
-    resp.send(result);
-});
-knl.delete('group/:id', async(req,resp)=>{
-    const result = await knl.sequelize().models.Group.destroy({
-        where:{
-            id: req.params.id
-        }
-    });
-    resp.json(result);
+    
+    resp.json({"status":"OK"});
     resp.end();
-})
+    
+});
