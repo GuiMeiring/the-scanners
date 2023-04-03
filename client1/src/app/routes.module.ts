@@ -12,6 +12,7 @@ const rootRoutes: Routes = [
       component: HomeComponent,
       canActivate: [AuthService],
       children: [
+        
         {
           path: '',
           canActivateChild: [AuthService],

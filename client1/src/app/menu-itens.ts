@@ -6,12 +6,17 @@ import { SubgroupComponent } from "./subgroup/subgroup.component";
 import { UserComponent } from "./user/user.component";
 import { UsuarioComponent } from "./usuario/usuario.component";
 
+//const roles = window.localStorage.getItem('roles');
+
+
+
 export const MenuItens = [
     {
         path: 'group',
         caption : 'Grupo',
         icon : 'assessment',
         component: GroupComponent,
+        
     },
     {
         path: 'subgroup',
