@@ -1,25 +1,28 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>
-            <h1>Entrar</h1>
+<mat-card class="main-login">
+        <mat-card-title class="left-login">
+            <h1>Faça seu Login</h1>
         </mat-card-title>
-    </mat-card-header>
-    <br>
-    <mat-card-content>
-            <mat-form-field appearance="fill">
+    
+    <mat-card-content class="right-login">
+        <div class="card-login">
+            <h1>LOGIN</h1>
+            <mat-form-field appearance="fill" class="textfield">
                 <mat-label>Usuário</mat-label>
                 <input matInput placeholder="Usuário" type="text" [(ngModel)]="username">
             </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" class="textfield">
                 <mat-label>Senha</mat-label>
-                <input matInput placeholder="Senha"  [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+                <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button class="btn-login" (click)="login()">Login</button>
+                <button mat-raised-button class="btn-login" color="primary" (click)="cadastro()">Cadastre-se</button>
+            </mat-card-actions>
+        </div>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="login()">Entrar</button>
-    </mat-card-actions>
+    
+    
 </mat-card>

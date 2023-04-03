@@ -39,9 +39,6 @@ export class ModalEditRequestsComponent implements OnInit {
     await this.listaProducts();
     await this.listaRequests();
     await this.listaAddress();
-
-
-
   }
   async listaRequests(){
     this.requests=  await this.httpService.get(`requests/${this.data.id}`);

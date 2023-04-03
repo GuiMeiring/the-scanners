@@ -1,0 +1,30 @@
+<mat-card-content>
+    <h1>Cadastre-se</h1>
+    <mat-form-field class="example-full-width"  appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Ex.: Guilherme Meiring" [(ngModel)]="name">
+    </mat-form-field>
+    <mat-form-field class="example-full-width"  appearance="fill">
+        <mat-label>Nome de usuário</mat-label>
+        <input matInput placeholder="Ex.:  GuiMeiring" [(ngModel)]="username">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width"  appearance="fill" class="password">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="Insira uma senha"  [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+    </mat-form-field>
+    <mat-form-field class="example-full-width"  appearance="fill" class="password">
+        <mat-label>Confirmação</mat-label>
+        <input matInput placeholder="Digite novamente"   [type]="hide ? 'cpassword' : 'text'" [(ngModel)]="cpassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+    </mat-form-field>
+    <br>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" class="botao" (click) = "postUser()">Confirmar</button>
+    </mat-card-actions>
+</mat-card-content>
