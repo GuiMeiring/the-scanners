@@ -22,12 +22,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    
+
     this.httpclient.post('http://localhost:3007/logon', {username : this.username, password : this.password}).toPromise().then((response : any)=> {
-      console.log(response.token);
-      if(response.token != null){
+      console.log(response);
+      if(response.token){
         window.localStorage.setItem('token', response.token);
         console.log("Logado");
+        window.localStorage.setItem('roles', response.user.roles)
+
         window.localStorage.setItem('id', response.user.id);
         this.router.navigateByUrl('');
 
@@ -41,8 +43,8 @@ export class LoginComponent implements OnInit {
       width: '600px'
     });
     ref.afterClosed().subscribe(result => {
-      
+
     })
-    
+
   }
 }

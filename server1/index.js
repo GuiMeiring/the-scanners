@@ -1,17 +1,17 @@
 const { required } = require('joi');
 
-require('./config/env-config');
-require('./starters/start-async-storange');
-require('./starters/start-express');
-require('./starters/start-bodyparser');
+require('./src/config/env-config');
+require('./src/starters/start-async-storange');
+require('./src/starters/start-express');
+require('./src/starters/start-bodyparser');
 // Sempre iniciar o sequelize depois do express
-require('./starters/start-sequelize');
-require('./starters/start-middlewares');
-require('./starters/start-sync-db');
-require('./routes');
+require('./src/starters/start-sequelize');
+require('./src/starters/start-middlewares');
+require('./src/starters/start-sync-db');
+require('./src/routes');
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('./src/swagger.json');
 
 let port = 3007;
 
