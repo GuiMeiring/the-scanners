@@ -22,7 +22,6 @@ export class MenuComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.roles = window.localStorage.getItem('roles');
     this.attention();
-    console.log(this.roles);
     this.subscription = this.observer.subscribe('menu-toggle', (data: any) => {
       this.opened = !this.opened;
     });
