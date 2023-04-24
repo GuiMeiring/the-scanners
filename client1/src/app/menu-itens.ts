@@ -1,4 +1,5 @@
 import { CollectionComponent } from './collection/collection.component';
+import { FreteComponent } from './frete/frete.component';
 import { GroupComponent } from './group/group.component';
 import { ProductsComponent } from './products/products.component';
 import { RequestsComponent } from './requests/requests.component';
@@ -57,5 +58,12 @@ export const MenuItens = [
     icon: 'shopping_cart',
     roles: [1, 4],
     component: RequestsComponent,
+  },
+  {
+    path: 'fretes',
+    caption: 'Frete',
+    icon: 'markunread_mailbox',
+    roles: [3],
+    component: FreteComponent,
   },
 ];

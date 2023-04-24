@@ -47,6 +47,8 @@ import { ModalDeleteProductRequestsComponent } from './modal-delete-product-requ
 import { ModalEditProductRequestsComponent } from './modal-edit-product-requests/modal-edit-product-requests.component';
 import { ModalAddProductRequestsComponent } from './modal-add-product-requests/modal-add-product-requests.component';
 import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.component';
+import { FreteComponent } from './frete/frete.component';
+import { ModalAddFreteComponent } from './modal-add-frete/modal-add-frete.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.componen
     ModalDeleteProductRequestsComponent,
     ModalEditProductRequestsComponent,
     ModalAddProductRequestsComponent,
-    ModalCadastroComponent
+    ModalCadastroComponent,
+    FreteComponent,
+    ModalAddFreteComponent
   ],
   imports: [
     RoutesModule,

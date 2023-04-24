@@ -1,0 +1,13 @@
+<mat-card-content>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Endereço</mat-label>
+      <input matInput placeholder="Digite o endereço"  type="text" [(ngModel)]="description" maxlength="100" minlength="2">
+    </mat-form-field>
+     <!-------------------------------------------------------------------------------------------------->
+  <br>
+  
+    <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addFrete()">Adicionar frete</button>
+    <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+</mat-card-actions>
+

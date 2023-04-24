@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-content>
+       <mat-form-field class="example-full-width" appearance="fill">
+         <input matInput placeholder="Procure pedido" [(ngModel)]="search">
+         
+  </mat-form-field>
+  <!-------------------------------------------------------------------------------------------------->
+  <br>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Data de emissão</th>
+      <th>Data de entrega</th>
+      <th >Endereço</th>
+      <th > % Desconto</th>
+      <th>Total</th>
+    </tr>
+    <tr  *ngFor="let requests of requests  | filter : search">
+        <td (click)="listRequests()" (click)="modalFrete()">{{requests.id}}</td>
+        <td (click)="listRequests()" (click)="modalFrete()">{{requests.client_name}}</td>
+        <td (click)="listRequests()" (click)="modalFrete()">{{requests.DateEmission | date : 'MM/dd/yyyy'}}</td>
+        <td (click)="listRequests()" (click)="modalFrete()">{{requests.DateDelivery | date : 'MM/dd/yyyy'}}</td>
+        <td (click)="listRequests()" (click)="modalFrete()">{{requests.address_rua}}</td>
+        <td></td>
+        <td (click)="listRequests()" (click)="modalFrete()">{{requests.total}}</td>
+       
+    </tr>
+
+   </table>
+  </mat-card-content>
+</mat-card>
+
