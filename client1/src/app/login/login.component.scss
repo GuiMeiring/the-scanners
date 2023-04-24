@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .left-login{
     width: 50vw;
     height: 100vh;
@@ -12,10 +13,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
 .left-login > h1{
-    font-size: 3vw;
+    font-size: 3.5vw;
 color: rgb(15, 225, 144);
+text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px ;
+
 }
 .left-img{
     width: 35vw;
@@ -31,30 +37,40 @@ color: rgb(15, 225, 144);
 }
 .card-login{
     width: 60%;
-    display: flex;
+    
+    text-align: center;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 30px 35px ;
+    padding: 30px ;
     background: #7a56ce;
     border-radius: 15px;
     box-shadow: 0px 10px 40px rgb(16, 15, 15);
 }
-.card-login > h1{
-    color: #06bd5e;
-    font-weight: 800;
-    margin: 0;
-}
-.textfield{
+mat-form-field{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+}
+h4{
+    color:rgb(158, 158, 158);
+    margin-top: 20px;
+}
+
+.card-login > h1{
+    color: rgb(0, 0, 0);
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px ;
+
+}
+
+.textfield{
+    
+    align-items: center;
     justify-content: center;
-    margin: 10px 0px;
 }
 .textfield > input{
-    width: 100%;
+    
     border: none;
     border-radius: 10px;
     padding: 15px;
@@ -62,27 +78,31 @@ color: rgb(15, 225, 144);
     color: antiquewhite;
     font-size: 12pt;
     outline: none;
+    
 }
 .textfield label{
     color: aliceblue;
-    margin-bottom: 10px;
     
 }
+h1{
+    padding: 10px;
+}
+
 .textfield > input::placeholder{
-    color:aquamarine
+    color:rgb(117, 201, 169)
+    
 }
 .btn-login{
     width: 100%;
-    padding: 16px 0px;
-    margin: 25px;
+    padding: 16px;
     border: none;
     border-radius: 8px;
     outline: none;
     text-transform: uppercase;
     font-weight: 800;
-    letter-spacing: 2px
-}
+    letter-spacing: 2px ;
 
+}
 /*mat-card {
     max-width: 40rem;
     margin: 15em auto;
