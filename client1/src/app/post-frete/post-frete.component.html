@@ -1,0 +1,23 @@
+<div style="text-align: center;">
+    <mat-card-content>
+        <mat-card-title>
+            <h1>Fretes</h1>
+        </mat-card-title>
+        <br>
+        <app-dropdown [array]="products" [idField]="'id'" [textField]="'description'" [title]="'Produto'"
+            [(ngModel)]="selectedProduct"></app-dropdown>
+        <br>
+        <br>
+        <app-dropdown [array]="products" [idField]="'id'" [textField]="'salePrice'" [title]="'Total'"
+            [(ngModel)]="selectedTotal"></app-dropdown>
+        <br>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Desconto</mat-label>
+            <input matInput placeholder="%" [(ngModel)]="desconto" maxlength="100" minlength="1">
+        </mat-form-field>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="postFrete()">Cadastrar</button>
+            <button mat-raised-button color="primary" (click)="cancel()">Cancelar</button>
+        </mat-card-actions>
+    </mat-card-content>
+</div>
