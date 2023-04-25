@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username : string = 'teste';
-  password : string = 'teste123';
+  username : string = 'SuperAdmin';
+  password : string = '%SuperAdmin%';
   hide : boolean = true;
 
   constructor(private router : Router, private httpclient : HttpClient) { }
