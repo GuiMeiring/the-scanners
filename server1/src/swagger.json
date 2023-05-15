@@ -2229,7 +2229,7 @@
             },
             "get":{
                 "description":"Buscar todas Promoções",
-                "summary":"Essa rota é responsável por buscar tas as Promoções",
+                "summary":"Essa rota é responsável por buscar todas as Promoções",
                 "tags":["Promotion"],
                 "security":[{"bearerAuth":[]}],
                 "parameters": [],
@@ -2300,7 +2300,7 @@
                                     }
                                 },
                                 "required": [
-                                    "description","months","desconto","ativo"
+                                    "id","description","months","desconto","ativo"
                                 ]
 
                             }
@@ -2376,6 +2376,259 @@
                         "name":"id",
                         "in":"path",
                         "description": "Promotion pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+                    }
+                }
+            }
+        },
+        "/frete":{
+            "post":{
+                "summary":"Cadastro  de Frete",
+                "description":"Essa rota é responsável pelo cadastro de um novo frete",
+                "tags":["Frete"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                        "$ref":"#/components/schemas/Frete"
+                                        
+                            },
+                                     "examples":{
+                                        "promotion":{
+                                            "value":{
+                                                "fkProduct":1,
+                                                "desc":30,
+                                                "total":30.99
+                                                
+                                            }
+                                        }
+                                        }
+                                    
+                                
+                            
+                        
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            },
+            "get":{
+                "description":"Buscar todos Fretes",
+                "summary":"Essa rota é responsável por buscar todos os fretes",
+                "tags":["Frete"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Frete"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita um Frete",
+                "summary":"Essa rota é responsável por editar um único frete passando seu id pelo body",
+                "tags":["Frete"],
+                "security":[{"bearerAuth":[]}],
+
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "id":{
+                                        "description":"Id da Promoção",
+                                        "type":"integer",
+                                        "example":1
+                                    },
+                                    "fkProduct":{
+                                       "example":1,
+                                       "type":"integer",
+                                       "description":"Id do produto"
+                                    },
+                                    "desc":{
+                                        "type":"integer",
+                                        "description":"Caso houver desconto no Frete",
+                                        "example":40
+                                    },
+                                    "total":{
+                                        "type":"number",
+                                        "format":"double",
+                                        "description":"Total do frete",
+                                        "example":61.98
+                                    }
+                                },
+                                "required": [
+                                    "id","fkProduct","desc","total"
+                                ]
+
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/fretes":{
+            "get":{
+                "description":"Buscar todos Fretes",
+                "summary":"Essa rota é responsável por buscar todos os fretes",
+                "tags":["Frete"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Frete"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/frete/{id}":{
+            "get":{
+                "description": "Buscar um único Frete pelo id",
+                "summary": "Essa rota é responsável por buscar um único frete pelo id",
+                "tags": ["Frete"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Frete pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Frete"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+
+            },
+            "patch":{
+                "description": "Edita o 'status' de um Frete para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar o frete  pelo id",
+                "tags": ["Frete"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Frete pelo id",
                         "required": true
                     }
                 ],
@@ -2629,6 +2882,24 @@
                     "ativo":{
                         "type":" boolean",
                         "description":"Ativo: true, Não ativo: false"
+                    }
+                }
+            },
+            "Frete":{
+                "required":["fkProduct","total", "desc","ativo"],
+                "properties":{
+                    "fkProduct":{
+                        "type":"integer",
+                        "description":"Id do produto"
+                    },
+                    "total":{
+                        "description":"Total do frete",
+                        "type":"number",
+                        "format":"double"
+                    },
+                    "desc":{
+                        "description":"Caso houver desconto no Frete",
+                        "type":"integer"
                     }
                 }
             }
