@@ -47,6 +47,10 @@ import { ModalDeleteProductRequestsComponent } from './modal-delete-product-requ
 import { ModalEditProductRequestsComponent } from './modal-edit-product-requests/modal-edit-product-requests.component';
 import { ModalAddProductRequestsComponent } from './modal-add-product-requests/modal-add-product-requests.component';
 import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.component';
+import { PromotionComponent } from './promotion/promotion.component';
+import { AddPromotionComponent } from './add-promotion/add-promotion.component';
+import { PrincipalPromotionComponent } from './principal-promotion/principal-promotion.component';
+import { MatSlideToggle, MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -88,7 +92,10 @@ import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.componen
     ModalDeleteProductRequestsComponent,
     ModalEditProductRequestsComponent,
     ModalAddProductRequestsComponent,
-    ModalCadastroComponent
+    ModalCadastroComponent,
+    PromotionComponent,
+    AddPromotionComponent,
+    PrincipalPromotionComponent
   ],
   imports: [
     RoutesModule,
@@ -99,7 +106,8 @@ import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.componen
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatSlideToggleModule
 
   ],
   exports : [

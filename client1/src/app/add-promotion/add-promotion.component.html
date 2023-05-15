@@ -1,0 +1,27 @@
+<mat-card-content>
+    <mat-card-title>
+      <h1>Cadastrar Promoção </h1>
+    </mat-card-title>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Descrição</mat-label>
+      <input matInput  [(ngModel)]="description" maxlength="100" minlength="1">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Meses</mat-label>
+      <input matInput  [(ngModel)]="months" maxlength="100" minlength="1">
+    </mat-form-field>
+    <br>
+    <mat-slide-toggle [(ngModel)]="ativo" color="primary">Promoção Ativa</mat-slide-toggle>
+   <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Desconto</mat-label>
+    <input matInput  [(ngModel)]="desconto" maxlength="100" minlength="1">
+  </mat-form-field>
+
+    <mat-card-actions>
+      <button  mat-raised-button color="primary" (click)="promotionAdd()" >Cadastrar</button>
+      <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+    </mat-card-actions>
+  </mat-card-content>
+
