@@ -1,9 +1,9 @@
 <mat-card>
-    <mat-card-content>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <input matInput placeholder="Buscar frete" [(ngModel)]="search">
-        <button mat-icon-button matSuffix (click)="postFrete()" [attr.aria-label]="'Addfrete'" [attr.aria-pressed]="add">
-          <mat-icon>add</mat-icon>
+  <mat-card-content>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <input matInput placeholder="Buscar frete" [(ngModel)]="search">
+      <button mat-icon-button matSuffix (click)="postFrete()" [attr.aria-label]="'Addfrete'" [attr.aria-pressed]="add">
+        <mat-icon>add</mat-icon>
       </button>
     </mat-form-field>
     <br>
@@ -12,13 +12,10 @@
         <th>ID</th>
         <th>Total</th>
       </tr>
-      <tr  *ngFor="let frete of fretes  | filter : search">
-          <td (click)="editFrete(frete, id)">{{frete.id}}</td>
-          <td (click)="editFrete(frete, id)">{{frete.total}}</td>
+      <tr *ngFor="let frete of fretes  | filter : search">
+        <td (click)="editFrete(frete, id)">{{frete.id}}</td>
+        <td (click)="editFrete(frete, id)">{{frete.total}}</td>
       </tr>
-     </table>
-    </mat-card-content>
-  </mat-card>
-
-
-
+    </table>
+  </mat-card-content>
+</mat-card>

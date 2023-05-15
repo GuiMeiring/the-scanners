@@ -46,11 +46,6 @@ import { ModalEditRequestsComponent } from './modal-edit-requests/modal-edit-req
 import { ModalDeleteProductRequestsComponent } from './modal-delete-product-requests/modal-delete-product-requests.component';
 import { ModalEditProductRequestsComponent } from './modal-edit-product-requests/modal-edit-product-requests.component';
 import { ModalAddProductRequestsComponent } from './modal-add-product-requests/modal-add-product-requests.component';
-import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.component';
-import { FreteComponent } from './frete/frete.component';
-import { PostFreteComponent } from './post-frete/post-frete.component';
-import { EditFreteComponent } from './edit-frete/edit-frete.component';
-
 
 @NgModule({
   declarations: [
@@ -91,10 +86,6 @@ import { EditFreteComponent } from './edit-frete/edit-frete.component';
     ModalDeleteProductRequestsComponent,
     ModalEditProductRequestsComponent,
     ModalAddProductRequestsComponent,
-    ModalCadastroComponent,
-    FreteComponent,
-    PostFreteComponent,
-    EditFreteComponent
   ],
   imports: [
     RoutesModule,
@@ -106,7 +97,6 @@ import { EditFreteComponent } from './edit-frete/edit-frete.component';
     MaterialModule,
     HttpClientModule,
     Ng2SearchPipeModule
-
   ],
   exports : [
     RouterModule

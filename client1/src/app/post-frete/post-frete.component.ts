@@ -32,7 +32,7 @@ export class PostFreteComponent implements OnInit {
      this.calculaDesc(this.desconto);
     console.log("aqui");
     this.fretes = await this.httpService.post('frete', { fkProduct : this.selectedProduct, total : this.selectedTotal, desc : this.desconto});
-console.log(this.fretes);
+    console.log(this.fretes);
     this.cancel();
   }
 
