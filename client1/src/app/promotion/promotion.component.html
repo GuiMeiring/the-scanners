@@ -1,0 +1,68 @@
+<mat-tab-group>
+  <mat-tab label="Dados">
+      <mat-card-content>
+        <br>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Meses </th>
+            <th>ativo </th>
+            <th>Desconto</th>
+            <th>Criado em </th>
+            <th>Editado em </th>
+          </tr>
+          <tr  *ngFor="let promotion of promotion">
+            <td>{{promotion.id}}</td>
+            <td>{{promotion.description}}</td>
+            <td>{{promotion.months}}</td>
+            <td>{{promotion.ativo}}</td>
+            <td>{{promotion.desconto}}</td>
+            <td>{{promotion.createdAt}}</td>
+            <td>{{promotion.updatedAt}}</td>
+
+          </tr>
+        </table>
+        <mat-card-actions>
+          <button  mat-raised-button color="primary" (click)="onNoClick()" >Cancelar</button>
+        </mat-card-actions>
+      </mat-card-content>
+  </mat-tab>
+  <mat-tab label="Editar">
+      <mat-card-content>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Descrição</mat-label>
+          <input matInput  [(ngModel)]="description" maxlength="100" minlength="1">
+        </mat-form-field>
+        <br>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Meses</mat-label>
+            <input matInput  [(ngModel)]="months" maxlength="100" minlength="1">
+          </mat-form-field>
+            <br>
+            <mat-slide-toggle [(ngModel)]="ativo" color="primary">Promoção Ativa</mat-slide-toggle>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Desconto</mat-label>
+              <input matInput  [(ngModel)]="desconto" maxlength="100" minlength="1">
+            </mat-form-field>
+            <mat-card-actions>
+          <button  mat-raised-button color="primary"  (click)="promotionEdit()">Editar</button>
+          <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+        </mat-card-actions>
+
+      </mat-card-content>
+      </mat-tab>
+      <mat-tab label="Deletar" >
+          <mat-card-content>
+            <br>
+            <h1>Tem certeza que deseja excluir essa promoção? </h1>
+            <br>
+            <br>
+            <mat-card-actions>
+              <button  mat-raised-button color="primary"  (click)="promotionDelete()">Excluir</button>
+              <button  mat-raised-button color="primary"  (click)="onNoClick()">Cancelar</button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-tab>
+</mat-tab-group>

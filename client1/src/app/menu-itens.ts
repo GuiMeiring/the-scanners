@@ -1,6 +1,6 @@
 import { CollectionComponent } from './collection/collection.component';
-import { FreteComponent } from './frete/frete.component';
 import { GroupComponent } from './group/group.component';
+import { PrincipalPromotionComponent } from './principal-promotion/principal-promotion.component';
 import { ProductsComponent } from './products/products.component';
 import { RequestsComponent } from './requests/requests.component';
 import { SubgroupComponent } from './subgroup/subgroup.component';
@@ -60,10 +60,10 @@ export const MenuItens = [
     component: RequestsComponent,
   },
   {
-    path: 'frete',
-    caption: 'Fretes',
-    icon: 'local_shipping',
-    roles: [1, 3],
-    component: FreteComponent,
+  path: 'promotion',
+    caption: 'Promoções',
+    icon: 'shopping_cart',
+    roles: [1,2,3],
+    component: PrincipalPromotionComponent,
   },
 ];

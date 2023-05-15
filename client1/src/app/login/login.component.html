@@ -1,25 +1,30 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>
-            <h1>Entrar</h1>
+<mat-card class="main-login">
+        <mat-card-title class="left-login">
+            <h1>FAÇA SEU LOGIN</h1>
+            <img src="https://ouch-cdn2.icons8.com/eo0E3VUhjKGgOihOWsZHd6rIlxBG0VMBhZ_pAlPjQdw/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNTgz/LzMwMmU1ZDAyLTM0/MDMtNDY5NC04N2I0/LWQ0Y2I5Y2I0MjU2/Yi5zdmc.png" >
+            <h4>THE SCANNERS: Guilherme Meiring, Heloisa Ernst, Isabel Valcanaia e Maria Segati.</h4>
         </mat-card-title>
-    </mat-card-header>
-    <br>
-    <mat-card-content>
-            <mat-form-field appearance="fill">
+
+    <mat-card-content class="right-login">
+        <div class="card-login">
+            <h1>Login</h1>
+            <mat-form-field appearance="fill" class="textfield">
                 <mat-label>Usuário</mat-label>
                 <input matInput placeholder="Usuário" type="text" [(ngModel)]="username">
             </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" class="textfield">
                 <mat-label>Senha</mat-label>
-                <input matInput placeholder="Senha"  [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+                <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button class="btn-login" (click)="login()">Entrar</button>
+            </mat-card-actions>
+            <a color="primary" (click)="cadastro()"><u>Cadastre-se aqui</u></a>
+        </div>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="login()">Entrar</button>
-    </mat-card-actions>
+
+
 </mat-card>
