@@ -12,8 +12,8 @@ import { ModalCadastroComponent } from '../modal-cadastro/modal-cadastro.compone
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username : string = 'SuperAdmin';
-  password : string = '%SuperAdmin%';
+  username : string = 'Gui';
+  password : string = 'teste123';
   hide : boolean = true;
 
   constructor(private router : Router, private httpclient : HttpClient, public dialog : MatDialog) { }
