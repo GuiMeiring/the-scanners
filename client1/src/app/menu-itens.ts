@@ -1,5 +1,6 @@
 import { CollectionComponent } from './collection/collection.component';
 import { GroupComponent } from './group/group.component';
+import { PrincipalPromotionComponent } from './principal-promotion/principal-promotion.component';
 import { ProductsComponent } from './products/products.component';
 import { RequestsComponent } from './requests/requests.component';
 import { SubgroupComponent } from './subgroup/subgroup.component';
@@ -57,5 +58,12 @@ export const MenuItens = [
     icon: 'shopping_cart',
     roles: [1, 4],
     component: RequestsComponent,
+  },
+  {
+  path: 'promotion',
+    caption: 'Promoções',
+    icon: 'shopping_cart',
+    roles: [1,2,3],
+    component: PrincipalPromotionComponent,
   },
 ];
