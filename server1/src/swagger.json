@@ -2173,6 +2173,228 @@
                     }
                 }
             }
+        },
+        "/promotion":{
+            "post":{
+                "summary":"Cadastro  de Promoção",
+                "description":"Essa rota é responsável pelo cadastro de uma nova promoção",
+                "tags":["Promotion"],
+                "security":[{"bearerAuth":[]}],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                        "$ref":"#/components/schemas/Promotion"
+                                        
+                            },
+                                     "examples":{
+                                        "promotion":{
+                                            "value":{
+                                                "description":"Promoção aniversário",
+                                                "months":12,
+                                                "desconto":30,
+                                                "ativo":true
+                                                
+                                            }
+                                        }
+                                        }
+                                    
+                                
+                            
+                        
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "401": {
+                        "description":"product already exists!"
+                    },
+                    "403":{
+                        "description":"Invalid token"
+
+                    },
+                    "200":{
+                        "description": "ok"
+                        
+                    }
+                }
+            },
+            "get":{
+                "description":"Buscar todas Promoções",
+                "summary":"Essa rota é responsável por buscar tas as Promoções",
+                "tags":["Promotion"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Promotion"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            },
+            "put":{
+                "description":"Edita uma Promoção",
+                "summary":"Essa rota é responsável por editar uma única promoção passando seu id pelo body",
+                "tags":["Promotion"],
+                "security":[{"bearerAuth":[]}],
+
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "id":{
+                                        "description":"Id da Promoção",
+                                        "type":"integer",
+                                        "example":1
+                                    },
+                                    "description":{
+                                       "example":"Promoção de 2 anos",
+                                       "type":"string",
+                                       "description":"Descrição da Promoção"
+                                    },
+                                    "months":{
+                                        "type":"integer",
+                                        "description":"Meses que o usuário precisa possuir para ganhar a promoção",
+                                        "example":24
+                                    },
+                                    "desconto":{
+                                        "type":"integer",
+                                        "description":"Total de desconto da promoção em porcentagem",
+                                        "example":60
+                                    },
+                                    "ativo":{
+                                        "type":" boolean",
+                                        "description":"Ativo: true, Não ativo: false",
+                                        "example":true
+                                    }
+                                },
+                                "required": [
+                                    "description","months","desconto","ativo"
+                                ]
+
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+            }
+        },
+        "/promotion/{id}":{
+            "get":{
+                "description": "Buscar uma única Promoção pelo id",
+                "summary": "Essa rota é responsável por buscar uma única promoção pelo id",
+                "tags": ["Promotion"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Promotion pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Promotion"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+    
+                    },
+                    "403":{
+                        "description":"Invalid token"
+    
+                    }
+                }
+
+            },
+            "patch":{
+                "description": "Edita o 'status' de uma Promoção para '0' pelo id",
+                "summary": "Essa rota é responsável por inativar a promoção  pelo id",
+                "tags": ["Promotion"],
+                "security":[{"bearerAuth":[]}],
+                "parameters": [{
+                        "name":"id",
+                        "in":"path",
+                        "description": "Promotion pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400":{
+                        "description":"Request needs a token"
+                    },
+                    "200":{
+                        "description": "OK"
+                    },
+                    "404":{
+                        "description":"Token invalid. Its necessary bearer + token"
+
+                    },
+                    "403":{
+                        "description":"Invalid token"
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -2386,6 +2608,27 @@
                     "total":{
                         "type":"float",
                         "description":"Total do pedido"
+                    }
+                }
+            },
+            "Promotion":{
+                "required":["description","months", "desconto","ativo"],
+                "properties":{
+                    "description":{
+                        "type":"string",
+                        "description":"Descrição da Promoção"
+                    },
+                    "months":{
+                        "type":"integer",
+                        "description":"Meses que o usuário precisa possuir para ganhar a promoção"
+                    },
+                    "desconto":{
+                        "type":"integer",
+                        "description":"Total de desconto da promoção em porcentagem"
+                    },
+                    "ativo":{
+                        "type":" boolean",
+                        "description":"Ativo: true, Não ativo: false"
                     }
                 }
             }
