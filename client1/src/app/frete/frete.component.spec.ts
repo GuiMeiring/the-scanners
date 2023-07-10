@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FreteComponent } from './frete.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
 describe('FreteComponent', () => {
   let component: FreteComponent;
@@ -8,7 +11,12 @@ describe('FreteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FreteComponent ]
+      declarations: [ FreteComponent ],
+      providers: [{
+        provide: MAT_DIALOG_DATA,
+        useValue: {}
+    }],
+      imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
   });

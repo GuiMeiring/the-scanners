@@ -1,14 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ModalAddGroupComponent } from './modal-add-group.component';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalAddGroupComponent', () => {
   let component: ModalAddGroupComponent;
   let fixture: ComponentFixture<ModalAddGroupComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ModalAddGroupComponent ]
+    TestBed.configureTestingModule({
+      declarations: [ ModalAddGroupComponent ],
+      providers: [{
+        provide: MatDialogModule,
+        useValue: {}
+    }],
+    imports: [MatDialogModule, HttpClientModule]
     })
     .compileComponents();
   });
