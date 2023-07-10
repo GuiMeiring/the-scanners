@@ -19,9 +19,7 @@ describe('GroupComponent', () => {
       imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(GroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

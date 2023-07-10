@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostFreteComponent } from './post-frete.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PostFreteComponent', () => {
   let component: PostFreteComponent;
@@ -11,15 +12,12 @@ describe('PostFreteComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PostFreteComponent ], 
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
     }],
-    imports: [MatDialogModule]   
+    imports: [MatDialogModule, HttpClientModule]   
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(PostFreteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

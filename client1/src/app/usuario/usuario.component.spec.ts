@@ -18,9 +18,7 @@ describe('UsuarioComponent', () => {
       imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(UsuarioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -19,9 +19,7 @@ describe('PrincipalPromotionComponent', () => {
       imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(PrincipalPromotionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

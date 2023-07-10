@@ -19,9 +19,7 @@ describe('ModalEditProductRequestsComponent', () => {
         ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(ModalEditProductRequestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

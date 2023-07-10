@@ -19,9 +19,7 @@ describe('LoginComponent', () => {
       imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

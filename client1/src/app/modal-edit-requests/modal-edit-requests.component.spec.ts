@@ -17,9 +17,7 @@ describe('ModalEditRequestsComponent', () => {
     imports: [MatDialogModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(ModalEditRequestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

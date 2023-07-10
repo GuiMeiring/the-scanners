@@ -11,9 +11,7 @@ describe('DashComponent', () => {
       declarations: [ DashComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DashComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -11,9 +11,7 @@ describe('ModalCadastroComponent', () => {
       declarations: [ ModalCadastroComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(ModalCadastroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

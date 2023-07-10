@@ -19,9 +19,7 @@ describe('FreteComponent', () => {
       imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(FreteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

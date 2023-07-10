@@ -13,9 +13,6 @@ describe('ModalAddAddressComponent', () => {
       
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(ModalAddAddressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

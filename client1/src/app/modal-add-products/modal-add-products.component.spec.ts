@@ -11,9 +11,7 @@ describe('ModalAddProductsComponent', () => {
       declarations: [ ModalAddProductsComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(ModalAddProductsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

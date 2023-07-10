@@ -11,9 +11,7 @@ describe('ModalEditUserComponent', () => {
       declarations: [ ModalEditUserComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(ModalEditUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

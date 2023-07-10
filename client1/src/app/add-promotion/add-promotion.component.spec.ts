@@ -11,9 +11,7 @@ describe('AddPromotionComponent', () => {
       declarations: [ AddPromotionComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AddPromotionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

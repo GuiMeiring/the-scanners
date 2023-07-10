@@ -11,9 +11,7 @@ describe('ModalDeleteUserComponent', () => {
       declarations: [ ModalDeleteUserComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(ModalDeleteUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

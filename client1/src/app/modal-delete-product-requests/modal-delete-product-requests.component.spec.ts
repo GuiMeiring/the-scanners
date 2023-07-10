@@ -11,9 +11,7 @@ describe('ModalDeleteProductRequestsComponent', () => {
       declarations: [ ModalDeleteProductRequestsComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(ModalDeleteProductRequestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

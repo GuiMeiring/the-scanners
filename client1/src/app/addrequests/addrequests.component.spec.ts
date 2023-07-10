@@ -14,9 +14,7 @@ describe('AddrequestsComponent', () => {
       imports: [RouterTestingModule, HttpClientModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(AddrequestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

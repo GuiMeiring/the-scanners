@@ -11,9 +11,7 @@ describe('ModelCollectionComponent', () => {
       declarations: [ ModelCollectionComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(ModelCollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

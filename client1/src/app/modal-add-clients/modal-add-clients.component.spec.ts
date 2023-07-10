@@ -19,9 +19,6 @@ describe('ModalAddClientsComponent', () => {
     ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(ModalAddClientsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

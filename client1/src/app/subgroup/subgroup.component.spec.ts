@@ -19,9 +19,7 @@ describe('SubgroupComponent', () => {
       imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SubgroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

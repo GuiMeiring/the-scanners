@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CollectionComponent } from './collection.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 describe('CollectionComponent', () => {
   let component: CollectionComponent;
@@ -13,15 +12,12 @@ describe('CollectionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ CollectionComponent ],
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
     }],
-      imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
+    imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(CollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

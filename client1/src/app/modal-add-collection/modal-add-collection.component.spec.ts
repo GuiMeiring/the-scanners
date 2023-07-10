@@ -11,9 +11,6 @@ describe('ModalAddCollectionComponent', () => {
       declarations: [ ModalAddCollectionComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(ModalAddCollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

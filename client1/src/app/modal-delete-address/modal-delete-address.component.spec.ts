@@ -11,9 +11,7 @@ describe('ModalDeleteAddressComponent', () => {
       declarations: [ ModalDeleteAddressComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(ModalDeleteAddressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -17,9 +17,7 @@ describe('EditFreteComponent', () => {
     imports: [MatDialogModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(EditFreteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

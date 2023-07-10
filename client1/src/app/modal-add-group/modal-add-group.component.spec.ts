@@ -11,15 +11,13 @@ describe('ModalAddGroupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ModalAddGroupComponent ],
       providers: [{
-        provide: MatDialogModule,
+        provide: MAT_DIALOG_DATA,
         useValue: {}
     }],
     imports: [MatDialogModule, HttpClientModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ModalAddGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

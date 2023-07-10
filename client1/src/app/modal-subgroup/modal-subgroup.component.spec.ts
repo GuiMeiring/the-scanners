@@ -11,9 +11,7 @@ describe('ModalSubgroupComponent', () => {
       declarations: [ ModalSubgroupComponent ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(ModalSubgroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

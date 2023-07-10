@@ -17,9 +17,7 @@ describe('PromotionComponent', () => {
     imports: [MatDialogModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(PromotionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

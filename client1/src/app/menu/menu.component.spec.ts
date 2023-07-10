@@ -13,9 +13,7 @@ describe('MenuComponent', () => {
       imports: [RouterTestingModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
