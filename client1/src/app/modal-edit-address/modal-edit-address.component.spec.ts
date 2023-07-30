@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalEditAddressComponent } from './modal-edit-address.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalEditAddressComponent', () => {
   let component: ModalEditAddressComponent;
@@ -11,12 +12,14 @@ describe('ModalEditAddressComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ModalEditAddressComponent ],
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
-      }],
-      imports: [
-        MatDialogModule
-      ]
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
   

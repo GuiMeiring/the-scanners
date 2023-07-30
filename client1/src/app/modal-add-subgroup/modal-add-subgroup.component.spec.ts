@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalAddSubgroupComponent } from './modal-add-subgroup.component';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalAddSubgroupComponent', () => {
   let component: ModalAddSubgroupComponent;
@@ -8,7 +10,16 @@ describe('ModalAddSubgroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalAddSubgroupComponent ]
+      declarations: [ ModalAddSubgroupComponent ],
+      providers: [{
+        provide: MatDialogRef,
+        useValue: {}
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
     fixture = TestBed.createComponent(ModalAddSubgroupComponent);

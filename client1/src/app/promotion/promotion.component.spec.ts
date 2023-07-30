@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PromotionComponent } from './promotion.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PromotionComponent', () => {
   let component: PromotionComponent;
@@ -11,10 +12,14 @@ describe('PromotionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PromotionComponent ],
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
-    }],
-    imports: [MatDialogModule]
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
  

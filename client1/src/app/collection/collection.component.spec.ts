@@ -14,7 +14,11 @@ describe('CollectionComponent', () => {
       providers: [{
         provide: MatDialogRef,
         useValue: {}
-    }],
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
     imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();

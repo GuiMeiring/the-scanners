@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddrequestsComponent } from './addrequests.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 describe('AddrequestsComponent', () => {
   let component: AddrequestsComponent;
@@ -11,7 +12,11 @@ describe('AddrequestsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ AddrequestsComponent ],
-      imports: [RouterTestingModule, HttpClientModule]
+      providers: [{
+        provide: MatDialogRef,
+        useValue: {}
+    }],
+      imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
   

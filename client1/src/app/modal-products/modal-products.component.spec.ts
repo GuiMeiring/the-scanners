@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalProductsComponent } from './modal-products.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalProductsComponent', () => {
   let component: ModalProductsComponent;
@@ -11,10 +12,14 @@ describe('ModalProductsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ModalProductsComponent ],
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
-    }],
-    imports: [MatDialogModule]
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
  

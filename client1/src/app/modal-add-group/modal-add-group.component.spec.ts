@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalAddGroupComponent } from './modal-add-group.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalAddGroupComponent', () => {
@@ -11,10 +11,14 @@ describe('ModalAddGroupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ModalAddGroupComponent ],
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
-    }],
-    imports: [MatDialogModule, HttpClientModule]
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
 

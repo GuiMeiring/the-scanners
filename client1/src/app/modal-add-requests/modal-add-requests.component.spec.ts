@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalAddRequestsComponent } from './modal-add-requests.component';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalAddRequestsComponent', () => {
   let component: ModalAddRequestsComponent;
@@ -8,7 +10,16 @@ describe('ModalAddRequestsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalAddRequestsComponent ]
+      declarations: [ ModalAddRequestsComponent ],
+      providers: [{
+        provide: MatDialogRef,
+        useValue: {}
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
   

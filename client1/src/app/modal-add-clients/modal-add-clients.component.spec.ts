@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalAddClientsComponent } from './modal-add-clients.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ModalAddClientsComponent', () => {
   let component: ModalAddClientsComponent;
@@ -11,12 +12,14 @@ describe('ModalAddClientsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ModalAddClientsComponent ],
       providers: [{
-        provide: MAT_DIALOG_DATA,
+        provide: MatDialogRef,
         useValue: {}
-    }],
-    imports: [
-      MatDialogModule
-    ]
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
     fixture = TestBed.createComponent(ModalAddClientsComponent);
