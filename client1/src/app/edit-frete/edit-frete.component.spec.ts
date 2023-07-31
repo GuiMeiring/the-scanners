@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalAddClientsComponent } from './modal-add-clients.component';
+import { EditFreteComponent } from './edit-frete.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('ModalAddClientsComponent', () => {
-  let component: ModalAddClientsComponent;
-  let fixture: ComponentFixture<ModalAddClientsComponent>;
+describe('EditFreteComponent', () => {
+  let component: EditFreteComponent;
+  let fixture: ComponentFixture<EditFreteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalAddClientsComponent ],
+      declarations: [ EditFreteComponent ],
       providers: [{
         provide: MatDialogRef,
         useValue: {}
@@ -22,7 +22,8 @@ describe('ModalAddClientsComponent', () => {
   imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-    fixture = TestBed.createComponent(ModalAddClientsComponent);
+
+    fixture = TestBed.createComponent(EditFreteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

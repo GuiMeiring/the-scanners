@@ -1,28 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalAddClientsComponent } from './modal-add-clients.component';
+import { PostFreteComponent } from './post-frete.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('ModalAddClientsComponent', () => {
-  let component: ModalAddClientsComponent;
-  let fixture: ComponentFixture<ModalAddClientsComponent>;
+describe('PostFreteComponent', () => {
+  let component: PostFreteComponent;
+  let fixture: ComponentFixture<PostFreteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalAddClientsComponent ],
+      declarations: [ PostFreteComponent ], 
       providers: [{
         provide: MatDialogRef,
         useValue: {}
-    },
-    {
-      provide: MAT_DIALOG_DATA,
-      useValue: {}
-  }],
-  imports: [HttpClientModule, MatDialogModule]
+    }],
+    imports: [MatDialogModule, HttpClientModule]   
     })
     .compileComponents();
-    fixture = TestBed.createComponent(ModalAddClientsComponent);
+    fixture = TestBed.createComponent(PostFreteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

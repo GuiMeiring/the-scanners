@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
+import { FreteComponent } from './frete.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('FreteComponent', () => {
+  let component: FreteComponent;
+  let fixture: ComponentFixture<FreteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [ FreteComponent ],
       providers: [{
         provide: MAT_DIALOG_DATA,
         useValue: {}
@@ -20,7 +20,7 @@ describe('LoginComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(FreteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddPromotionComponent } from './add-promotion.component';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AddPromotionComponent', () => {
   let component: AddPromotionComponent;
@@ -8,12 +10,19 @@ describe('AddPromotionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddPromotionComponent ]
+      declarations: [ AddPromotionComponent ],
+      providers: [{
+        provide: MatDialogRef,
+        useValue: {}
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+  }],
+  imports: [HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AddPromotionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

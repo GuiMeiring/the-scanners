@@ -731,7 +731,7 @@
                                         
                             },
                             "examples":{
-                                "subgroup":{
+                                "collection":{
                                     "value":{
                                         "description":"Inverno 2023"     
                                     }
@@ -2178,7 +2178,7 @@
             "post":{
                 "summary":"Cadastro  de Promoção",
                 "description":"Essa rota é responsável pelo cadastro de uma nova promoção",
-                "tags":["Promotion"],
+                "tags":["Promoção"],
                 "security":[{"bearerAuth":[]}],
                 "requestBody":{
                     "content":{
@@ -2230,7 +2230,7 @@
             "get":{
                 "description":"Buscar todas Promoções",
                 "summary":"Essa rota é responsável por buscar todas as Promoções",
-                "tags":["Promotion"],
+                "tags":["Promoção"],
                 "security":[{"bearerAuth":[]}],
                 "parameters": [],
                 "responses": {
@@ -2264,7 +2264,7 @@
             "put":{
                 "description":"Edita uma Promoção",
                 "summary":"Essa rota é responsável por editar uma única promoção passando seu id pelo body",
-                "tags":["Promotion"],
+                "tags":["Promoção"],
                 "security":[{"bearerAuth":[]}],
 
                 "requestBody":{
@@ -2329,7 +2329,7 @@
             "get":{
                 "description": "Buscar uma única Promoção pelo id",
                 "summary": "Essa rota é responsável por buscar uma única promoção pelo id",
-                "tags": ["Promotion"],
+                "tags": ["Promoção"],
                 "security":[{"bearerAuth":[]}],
                 "parameters": [{
                         "name":"id",
@@ -2370,7 +2370,7 @@
             "patch":{
                 "description": "Edita o 'status' de uma Promoção para '0' pelo id",
                 "summary": "Essa rota é responsável por inativar a promoção  pelo id",
-                "tags": ["Promotion"],
+                "tags": ["Promoção"],
                 "security":[{"bearerAuth":[]}],
                 "parameters": [{
                         "name":"id",
@@ -2710,14 +2710,14 @@
             "Collection":{
                 "required":["description"],
                 "properties":{
-                    "decription":{
+                    "description":{
                         "type":"string",
                         "description":"Descrição da coleção"
                     }
                 }
             },
             "Products":{
-                "required":["description","salePrice","fkGroup","fkSubGroup"],
+                "required":["description","salePrice","fkGroup","fkSubGroup","fkCollection"],
                 "properties":{
                     "description":{
                         "type":"string",
@@ -2805,7 +2805,7 @@
                 }
             },
             "Requests":{
-                "required":["fkClients","fkAddress","DateEmisson","DateDelivery","total"],
+                "required":["fkClients","fkAddress","DateEmission","DateDelivery","total"],
                 "properties":{
                     "fkClients":{
                         "type":"integer",
@@ -2832,7 +2832,7 @@
                 }
             },
             "ProdRequests":{
-                "required":["fkRequests","fkProducts","amount","discount","increase","total"],
+                "required":["fkRequests","fkProducts","amount","discount","unitPrice","increase","total"],
                 "properties":{
                     "fkRequests":{
                         "type":"integer",

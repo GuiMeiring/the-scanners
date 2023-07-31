@@ -24,8 +24,6 @@ export class ModalAddGroupComponent implements OnInit {
   async groupAdd(){
     this.group= await this.httpService.post('group', { description: this.description});
     this.onNoClick();
-
-
   }
 
 }

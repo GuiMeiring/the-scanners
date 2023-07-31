@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrincipalPromotionComponent } from './principal-promotion.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
 describe('PrincipalPromotionComponent', () => {
   let component: PrincipalPromotionComponent;
@@ -8,12 +11,15 @@ describe('PrincipalPromotionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrincipalPromotionComponent ]
+      declarations: [ PrincipalPromotionComponent ],
+      providers: [{
+        provide: MAT_DIALOG_DATA,
+        useValue: {}
+    }],
+      imports: [RouterTestingModule, HttpClientModule, MatDialogModule]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+ 
     fixture = TestBed.createComponent(PrincipalPromotionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
