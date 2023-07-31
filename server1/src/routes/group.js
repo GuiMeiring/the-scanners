@@ -1,6 +1,5 @@
 const Joi=require('joi');
 const knl =require('../knl');
-const securityConsts = require('../consts/security-consts');
 
 knl.post('group', async(req, resp) =>{
     const schema =Joi.object({

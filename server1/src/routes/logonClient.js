@@ -1,5 +1,5 @@
 const knl = require('../knl');
-const securityConsts = require('../consts/security-consts');
+require('dotenv').config();
 const Joi = require('joi');
 const jwt = require('../utils/jwt');
 const md5 = require('../utils/md5-pass');
@@ -30,4 +30,4 @@ knl.post('logon', async (req, resp) => {
         client  : client
     });
     
-}, securityConsts.USER_TYPE_PUBLIC);
+}, process.env.USER_TYPE_PUBLIC);
