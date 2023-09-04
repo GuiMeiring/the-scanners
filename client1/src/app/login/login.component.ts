@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCadastroComponent } from '../modal-cadastro/modal-cadastro.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -15,15 +16,28 @@ export class LoginComponent implements OnInit {
   username : string = 'Gui';
   password : string = 'teste123';
   hide : boolean = true;
+  form!: FormGroup;
 
-  constructor(private router : Router, private httpclient : HttpClient, public dialog : MatDialog) { }
+
+  constructor(private fb: FormBuilder, private router : Router, private httpclient : HttpClient, public dialog : MatDialog) {
+    this.form = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      
+    })
+   }
 
   ngOnInit(): void {
   }
 
+
+  isValidForm(): boolean {
+    return this.form.valid;
+  }
+
   login(){
 
-    this.httpclient.post('http://localhost:3007/logon', {username : this.username, password : this.password}).toPromise().then((response : any)=> {
+    this.httpclient.post('http://localhost:3007/logon', {username : this.form.controls['username'].value, password : this.form.controls['password'].value}).toPromise().then((response : any)=> {
       console.log(response);
       if(response.token){
         window.localStorage.setItem('token', response.token);
@@ -31,7 +45,8 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('roles', response.user.roles)
 
         window.localStorage.setItem('id', response.user.id);
-        this.router.navigateByUrl('');
+        this.router.
+      navigateByUrl('');
 
 
       }

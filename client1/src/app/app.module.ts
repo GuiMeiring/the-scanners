@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BlockUIModule } from 'ng-block-ui';
 import { AppRoutingModule } from './app-routing.module';
@@ -107,8 +107,8 @@ import { MatSlideToggle, MatSlideToggleModule } from '@angular/material/slide-to
     MaterialModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    MatSlideToggleModule
-
+    MatSlideToggleModule,
+    ReactiveFormsModule
   ],
   exports : [
     RouterModule
