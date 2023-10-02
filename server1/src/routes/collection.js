@@ -1,16 +1,16 @@
 const Joi = require('joi');
 const knl = require('../knl');
 
-knl.post('collection', async(req,resp) => {
-    const schema = Joi.object({
-        description : Joi.string().min(1).max(100).required()
-    })
+knl.post('collection', async (req, resp) => {
+  const schema = Joi.object({
+    description: Joi.string().min(1).max(100).required(),
+  });
 
     knl.validate(req.body, schema);
 
     const result = await knl.sequelize().models.Collection.findAll({
-        where : {
-            description : req.body.description
+        where : { +++++
+            description: req.body.description
         }
     });
 
@@ -30,7 +30,7 @@ knl.get('collection', async (req, resp)=>{
     const result =await knl.sequelize().models.Collection.findAll({
         where: {
             status:1
-        }
+        }++
     });
     resp.json(result);
     resp.end();

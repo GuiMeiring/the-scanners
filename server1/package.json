@@ -21,5 +21,10 @@
     "swagger-ui-express": "^4.6.2",
     "uuid": "^9.0.0",
     "yesql": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "8.16.0",
+    "eslint-config-google": "^0.14.0",
+    "prettier": "^3.0.3"
   }
 }
