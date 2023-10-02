@@ -1,6 +1,6 @@
 const knl = require('../knl');
 
-knl.get('hello', async (req, resp) => {
-    resp.json({});
-    resp.end();
-})
+knl.get('hello', async (resp) => {
+  resp.json({});
+  resp.end();
+});
