@@ -23,8 +23,13 @@
     "yesql": "^5.0.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "eslint": "8.16.0",
     "eslint-config-google": "^0.14.0",
     "prettier": "^3.0.3"
+=======
+    "eslint": "^8.50.0",
+    "eslint-config-google": "^0.14.0"
+>>>>>>> ba8cd7ad056358b74d22022cd5c54b4c3a8217c3
   }
 }

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 const {required} = require('joi');
+=======
+>>>>>>> ba8cd7ad056358b74d22022cd5c54b4c3a8217c3
 require('./src/config/env-config');
 require('./src/starters/start-async-storange');
 require('./src/starters/start-express');
@@ -20,6 +23,7 @@ if (process.env.PORT) {
 }
 
 global.app.express.use(
+<<<<<<< HEAD
     '/api-docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerDocument),
@@ -28,4 +32,17 @@ global.app.express.use(
 global.app.express_listener_instance = global.app.express.listen(port, () => {
   console.log(`express está escutando ${global.app.express_listener_instance.address().port}`);
   console.log('Documentation: http://localhost:' + global.app.express_listener_instance.address().port + '/api-docs/');
+=======
+    '/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument),
+);
+
+global.app.express_listener_instance = global.app.express.listen(port, () => {
+  console.log(
+      'Express is listen on'+global.app.express_listener_instance.address().
+          port,
+  );
+  console.log(
+      'Documentation: http://localhost:'+global.app.express_listener_instance.address().port+'/api-docs/',
+  );
+>>>>>>> ba8cd7ad056358b74d22022cd5c54b4c3a8217c3
 });
