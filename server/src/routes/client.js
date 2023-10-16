@@ -17,8 +17,8 @@ knl.post('client', async(req, resp) =>{
             estado : Joi.string().min(2).max(20),
             cep : Joi.string().min(9).max(9),
             numero: Joi.number().min(1),
-            complemento: Joi.string().min(3).max(100),
-            pontoDeReferencia: Joi.string().min(3).max(100),
+            complemento: Joi.string().min(0).max(0),
+            pontoDeReferencia: Joi.string().min(0).max(0),
 
         }))
         
