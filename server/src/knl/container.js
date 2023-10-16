@@ -1,5 +1,5 @@
 const knl = require('../knl');
-const securityConsts = require('../consts/security-consts');
+require('dotenv').config();
 
 const handleException = (e, req, resp) => {
     console.error(e);
@@ -44,14 +44,14 @@ const runInContext = async (req, resp, fn, userTypes) => {
 
     try{
         if (userTypes == undefined || userTypes == null){
-            userTypes = [securityConsts.USER_TYPE_PRIVATE]
+            userTypes = [process.env.USER_TYPE_PRIVATE]
         }
 
         if (!Array.isArray(userTypes)){
             userTypes = [userTypes];
         }
 
-        const publicUser = userTypes.find(element => element == securityConsts.USER_TYPE_PUBLIC);
+        const publicUser = userTypes.find(element => element == process.env.USER_TYPE_PUBLIC);
 
         if (publicUser != 0){
             knl.createException('0008', '', !req.app.token || req.app.token == '');

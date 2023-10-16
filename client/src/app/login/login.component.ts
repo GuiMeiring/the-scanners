@@ -13,8 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username : string = 'Gui';
-  password : string = 'teste123';
+
   hide : boolean = true;
   form!: FormGroup;
 
@@ -23,11 +22,15 @@ export class LoginComponent implements OnInit {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
-      
+
     })
    }
 
   ngOnInit(): void {
+  }
+
+  isValidForm(): boolean {
+    return this.form.valid; //True - False
   }
 
 

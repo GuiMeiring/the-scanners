@@ -9,12 +9,6 @@
         "sourceType": "module"
     },
     "rules": {
-<<<<<<< HEAD
         "linebreak-style": 0
-=======
-        "linebreak-style": "off",
-        "no-unused-vars": "off",
-        "no-trailing-spaces": "off"
->>>>>>> ba8cd7ad056358b74d22022cd5c54b4c3a8217c3
     }
 }

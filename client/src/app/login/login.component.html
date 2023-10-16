@@ -9,26 +9,25 @@
         <div class="card-login">
             <h1>Login</h1>
             <form action="" [formGroup]="form">
-                <mat-form-field appearance="fill" class="textfield">
-                    <mat-label>Usuário</mat-label>
-                    <input matInput placeholder="Usuário"  formControlName="username" type="text">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="textfield">
-                    <mat-label>Senha</mat-label>
-                    <input matInput placeholder="Senha"   formControlName="password" [type]="hide ? 'password' : 'text'"
-    >
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-                </form>
+            <mat-form-field appearance="fill" class="textfield">
+                <mat-label>Usuário</mat-label>
+                <input matInput placeholder="Usuário"  formControlName="username" type="text">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="textfield">
+                <mat-label>Senha</mat-label>
+                <input matInput placeholder="Senha"   formControlName="password" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            </form>
             <mat-card-actions>
                 <button mat-raised-button [disabled]="form.invalid" class="btn-login" (click)="login()">Entrar</button>
             </mat-card-actions>
             <a color="primary" (click)="cadastro()"><u>Cadastre-se aqui</u></a>
         </div>
-
     </mat-card-content>
+
 
 
 </mat-card>
