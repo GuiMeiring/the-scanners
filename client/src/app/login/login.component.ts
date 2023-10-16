@@ -34,10 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  isValidForm(): boolean {
-    return this.form.valid;
-  }
-
   login(){
 
     this.httpclient.post('http://localhost:3007/logon', {username : this.form.controls['username'].value, password : this.form.controls['password'].value}).toPromise().then((response : any)=> {

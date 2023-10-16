@@ -51,7 +51,6 @@ import { PromotionComponent } from './promotion/promotion.component';
 import { AddPromotionComponent } from './add-promotion/add-promotion.component';
 import { PrincipalPromotionComponent } from './principal-promotion/principal-promotion.component';
 import { MatSlideToggle, MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
