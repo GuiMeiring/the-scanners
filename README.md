@@ -62,15 +62,15 @@ O cliente Angular será executado em http://localhost:4200/ por padrão.
 3. Antes de executar a API, você precisa configurar algumas variáveis de ambiente. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
 
    ```bash
-   PORT=                                                 # Porta da aplicação 
-   DB_SERVER=localhost                                   # Endereço ou localização do servidor de Banco de Dados Mysql
-   DB_USER=                                              # Usuário Mysql
-   DB_PASS=                                              # Senha do usuário Mysql
-   DB_DATABASE=                                          # Nome do banco de dados
-   USER_TYPE_PUBLIC=0                                    # Usada para quando uma rota for publica
-   USER_TYPE_PRIVATE=1                                   # Usada para quando uma rota for privada                                                               
-   PASSWORD_SALT=SFAAFsd3gkunffohtyh2o9%3238¨%vsujbsyvar # Usada para adicionar complexidade ao processo de hash de senhas de usuário
-   JWT_KEY=fkjnion2h7usaklxue¨¨$#*safghasd5828asd2       # Chave do JWT
+   PORT=                # Porta da aplicação 
+   DB_SERVER=localhost  # Endereço ou localização do servidor de Banco de Dados Mysql
+   DB_USER=             # Usuário Mysql
+   DB_PASS=             # Senha do usuário Mysql
+   DB_DATABASE=         # Nome do banco de dados
+   USER_TYPE_PUBLIC=0   # Usada para quando uma rota for publica
+   USER_TYPE_PRIVATE=1  # Usada para quando uma rota for privada                                                               
+   PASSWORD_SALT=       # Usada para adicionar complexidade ao processo de hash de senhas de usuário
+   JWT_KEY=             # Chave do JWT
    ```
 
 4. Inicie o servidor Node.js:
