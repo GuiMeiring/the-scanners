@@ -116,7 +116,7 @@ Agora que o cliente e o servidor estão em execução, você pode acessar o apli
 
 # Contato
 
-<img src="https://raw.githubusercontent.com/GuiMeiring/the-sacanners/the-scanners" alt="the-scanners">
+<img src="https://github.com/GuiMeiring/the-scanners/blob/Gui/the-scanners.PNG" alt="the-scanners">
 
 Para dúvidas ou informações adicionais, entre em contato com a equipe **THE SCANNERS**.
 
