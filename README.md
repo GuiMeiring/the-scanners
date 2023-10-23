@@ -80,6 +80,12 @@ O cliente Angular será executado em http://localhost:4200/ por padrão.
    ```
 O servidor Node.js estará disponível em http://localhost:3007/ por padrão.
 
+## Documentação API
+
+A documentação da API está disponível em http://localhost:{PORTA_DO_ARQUIVO_ENV}/api-docs, onde {PORTA_DO_ARQUIVO_ENV} deve ser substituído pela porta que você configurou em sua variável de ambiente PORT no server.
+
+Certifique-se de ter a aplicação em execução antes de acessar a documentação.
+
 ## Uso
 
 Agora que o cliente e o servidor estão em execução, você pode acessar o aplicativo no navegador em http://localhost:4200/ e interagir com ele.
