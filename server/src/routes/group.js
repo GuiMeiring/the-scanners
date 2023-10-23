@@ -1,25 +1,8 @@
 const Joi=require('joi');
 const knl =require('../knl');
+const {groupController} = require('../controllers');
 
-knl.post('group', async (req, resp) => {
-  const schema = Joi.object({
-    description: Joi.string().min(1).max(100).required(),
-  });
-  knl.validate(req.body, schema);
-  const result = await knl.sequelize().models.Group.findAll({
-    where: {
-      description: req.body.description,
-    },
-  });
-  knl.createException('0006', '', !knl.objects.isEmptyArray(result));
-  const group = knl.sequelize().models.Group.build({
-    description: req.body.description,
-    status: 1,
-  }); 
-  await group.save();
-  await resp.json({'status': 'OK'});
-  resp.end();
-});
+knl.post('/group', groupController.createGroup);
 
 knl.get('group', async (resp) => {
   const result =await knl.sequelize().models.Group.findAll({
