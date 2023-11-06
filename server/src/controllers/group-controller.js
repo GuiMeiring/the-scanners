@@ -49,16 +49,18 @@ const groupController = {
   },
 
   patchById: async (req, resp) => {
-    await knl.sequelize().models.Group.update({
-      status: 0,
-    },
-    {
-      where: {
-        id: req.params.id,
-      },
-    });
+    
 
     try {
+      const result= await knl.sequelize().models.Group.update({
+        status: 0,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      });
+
       resp.json({'status': 'OK'});
     } catch (error) {
       resp.status(500).json({error: 'Internal Server Error'});
@@ -66,17 +68,20 @@ const groupController = {
   },
 
   updateGroup: async (req, resp) => {
-    await knl.sequelize().models.Group.update({
-      description: req.body.description,
-    },
-    {
-      where: {
-        id: req.body.id,
-      },
-    });
+   
     try {
+      const result=  await knl.sequelize().models.Group.update({
+        description: req.body.description,
+      },
+      {
+        where: {
+          id: req.body.id,
+        },
+      });
+
       resp.json({'status': 'OK'});
     } catch (error) {
+      console.log(error);
       resp.status(500).json({error: 'Internal Server Error'});
     }
   },
